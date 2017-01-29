@@ -11,6 +11,7 @@ using System.IO;
 
 namespace ShoppingApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ItemsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -38,7 +39,6 @@ namespace ShoppingApp.Controllers
         }
 
         // GET: Items/Create
-        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
