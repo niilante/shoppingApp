@@ -68,9 +68,9 @@ namespace ShoppingApp.Controllers
                     if (image != null && image.ContentLength > 0)
                     {
                         var fileName = Guid.NewGuid().ToString() + ".jpg";
-                        var path = Path.Combine(Server.MapPath("~/Content/img"), fileName);
+                        var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
                         image.SaveAs(path);
-                        item.MediaUrl = $"~/Content/img/{fileName}";
+                        item.MediaUrl = $"~/images/uploads/{fileName}";
                     }
                 }
 
@@ -104,10 +104,22 @@ namespace ShoppingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,MediaUrl,Description,Created,Updated")] Item item)
+        public ActionResult Edit([Bind(Include = "Id,Name,Price,Description,Created,Updated")] Item item)
         {
             if (ModelState.IsValid)
             {
+                if (Request.Files.Count == 1)
+                {
+                    var image = Request.Files[0];
+
+                    if (image != null && image.ContentLength > 0)
+                    {
+                        var fileName = Guid.NewGuid().ToString() + ".jpg";
+                        var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
+                        image.SaveAs(path);
+                        item.MediaUrl = $"~/images/uploads/{fileName}";
+                    }
+                }
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

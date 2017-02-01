@@ -1089,8 +1089,8 @@ h1 {
 .navbar-collapse {
   max-height: 340px;
   overflow-x: visible;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 1px;
+  padding-left: 1px;
 }
 .navbar-collapse.in {
   overflow-y: auto;
