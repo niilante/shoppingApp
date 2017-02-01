@@ -68,9 +68,9 @@ namespace ShoppingApp.Controllers
                     if (image != null && image.ContentLength > 0)
                     {
                         var fileName = Guid.NewGuid().ToString() + ".jpg";
-                        var path = Path.Combine(Server.MapPath("~/images/uploads/"), fileName);
+                        var path = Path.Combine(Server.MapPath("~/Content/img"), fileName);
                         image.SaveAs(path);
-                        item.MediaUrl = $"/images/uploads/{fileName}";
+                        item.MediaUrl = $"~/Content/img/{fileName}";
                     }
                 }
 

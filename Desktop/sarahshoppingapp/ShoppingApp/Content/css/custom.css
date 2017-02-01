@@ -20,3 +20,17 @@ textarea {
 .navbar {
     height: 90px;
 }
+
+.navbar-brand {
+    font-size: 30px;
+}
+
+.hidden-xs {
+ height:60px;
+ width: 75px;
+}
+ 
+.img-responsiveTop, .itemTop {
+    height: 550px;
+    width: 600px;
+}
