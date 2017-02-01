@@ -7,9 +7,9 @@ _________________________________________________________ -->
         <div class="navbar-header">
 
             <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                My Store
-                @*<img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
-                <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>*@
+                Happy Pooch
+                <img src="~/Content/img/happy-dog.jpg" class="hidden-xs">
+                <img src="~/Content/img/happy-dog.jpg" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
             </a>
             <div class="navbar-buttons">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -35,7 +35,7 @@ _________________________________________________________ -->
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
-                    <li>@Html.ActionLink("Items", "Index", "Items")</li>
+                    <li>@Html.ActionLink("Products", "Index", "Items")</li>
                     <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
                 }
                 <li>@Html.ActionLink("Shopping Cart", "Index", "ShoppingCart")</li>
@@ -81,7 +81,7 @@ _________________________________________________________ -->
         {
             <div class="username" style="text-align:right;clear:both;">
                 <small>
-                    @User.Identity.GetUserName()
+                Welcome, @User.Identity.GetUserName()!
                 </small>
             </div>
         }
