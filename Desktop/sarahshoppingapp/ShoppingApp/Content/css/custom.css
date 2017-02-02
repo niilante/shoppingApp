@@ -21,11 +21,6 @@ textarea {
     height: 90px;
 }
 
-/*.navbar-brand home {
-    font-size: 40px;
-    color: #0039e6;
-}*/
-
 .hidden-xs {
  height:60px;
  width: 75px;
@@ -42,7 +37,12 @@ textarea {
     float: right;
 }
 #Description {
-    width: 600px;
+    width: 200px;
     height: 400px;
-    max-width: 600px;
+    max-width: 100px;
+}
+
+#descriptiontwo {
+    width: 300px;
+    max-height: 50px;
 }
