@@ -21,9 +21,10 @@ textarea {
     height: 90px;
 }
 
-.navbar-brand {
-    font-size: 30px;
-}
+/*.navbar-brand home {
+    font-size: 40px;
+    color: #0039e6;
+}*/
 
 .hidden-xs {
  height:60px;

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ShoppingApp.Models;
 using System.IO;
+using Microsoft.AspNet.Identity;
 
 namespace ShoppingApp.Controllers
 {
@@ -20,7 +21,8 @@ namespace ShoppingApp.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.Items.ToList());
+            var items = db.Items.ToList();
+            return View(items);
         }
 
         // GET: Items/Details/5
@@ -30,12 +32,19 @@ namespace ShoppingApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var user = db.Users.Find(User.Identity.GetUserId());
             Item item = db.Items.Find(id);
+            var cartItems = db.ShoppingCarts.SqlQuery($"SELECT * FROM ShoppingCarts WHERE ItemId={id} AND CustomerId='{user.Id}'").ToList();
             if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(item);
+
+            ViewModel.ItemDetailsViewModel viewModel = new ViewModel.ItemDetailsViewModel();
+            viewModel.Item = item;
+            viewModel.IsAdded = cartItems.Count > 0;
+
+            return View(viewModel);
         }
 
         // GET: Items/Create

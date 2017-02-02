@@ -1143,7 +1143,10 @@ h1 {
   font-size: 18px;
   line-height: 20px;
   height: 70px;
+ 
 }
+
+
 .navbar-brand:hover,
 .navbar-brand:focus {
   text-decoration: none;

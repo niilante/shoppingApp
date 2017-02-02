@@ -1,0 +1,54 @@
+window.hjSiteSettings = window.hjSiteSettings || {"testers_widgets":[],"surveys":[],"record_targeting_rules":[{"negate":false,"pattern":"https:\/\/www.codementor.io\/classes\/learn-python-live","match_operation":"simple","component":"url"},{"negate":false,"pattern":"https:\/\/www.codementor.io\/classes\/","match_operation":"simple","component":"url"}],"recording_capture_keystrokes":true,"polls":[],"site_id":65480,"forms":[{"field_info":[{"field_type":"text","match_value":"schedule_cluster[landing_page]","id":144979,"match_attribute":"name"},{"field_type":"textarea","match_value":"schedule_cluster[description]","id":144982,"match_attribute":"name"},{"field_type":"email","match_value":"user[email]","id":144983,"match_attribute":"name"},{"field_type":"text","match_value":"user[name]","id":144984,"match_attribute":"name"},{"field_type":"password","match_value":"user[password]","id":144985,"match_attribute":"name"}],"targeting":[{"negate":false,"pattern":"https:\/\/www.codementor.io\/monthly\/l\/career","match_operation":"simple","component":"url"}],"selector_type":"css","created_epoch_time":1442975870,"selector":"0:div#post-request > div.customizeContainer > div.row-fluid > div.span7.offset1 > form","id":15365},{"field_info":[{"field_type":"text","match_value":"schedule_cluster[landing_page]","id":144972,"match_attribute":"name"},{"field_type":"textarea","match_value":"schedule_cluster[description]","id":144975,"match_attribute":"name"},{"field_type":"email","match_value":"user[email]","id":144976,"match_attribute":"name"},{"field_type":"text","match_value":"user[name]","id":144977,"match_attribute":"name"},{"field_type":"password","match_value":"user[password]","id":144978,"match_attribute":"name"}],"targeting":[{"negate":false,"pattern":"https:\/\/www.codementor.io\/monthly\/l\/learn","match_operation":"simple","component":"url"}],"selector_type":"css","created_epoch_time":1442975804,"selector":"0:div#post-request > div.customizeContainer > div.row-fluid > div.span7.offset1 > form","id":15364},{"field_info":[{"field_type":"text","match_value":"user[name]","id":116216,"match_attribute":"name"},{"field_type":"email","match_value":"user[email]","id":116217,"match_attribute":"name"},{"field_type":"password","match_value":"user[password]","id":116218,"match_attribute":"name"}],"targeting":[{"negate":false,"pattern":"https:\/\/www.codementor.io\/user\/monthly_registration","match_operation":"simple","component":"url"}],"selector_type":"css","created_epoch_time":1440038505,"selector":"0:div#inner-body > div.customizeContainer > form","id":12354}],"record":false,"heatmaps":[{"targeting":[{"negate":false,"pattern":"https:\/\/www.codementor.io\/dev-coding-bootcamp\/ios-swift-training","match_operation":"simple","component":"url"}],"created_epoch_time":1453740541,"id":332627,"selector_version":0},{"targeting":[{"negate":false,"pattern":"https:\/\/www.codementor.io\/dev-coding-bootcamp\/python-training","match_operation":"simple","component":"url"}],"created_epoch_time":1453740495,"id":332626,"selector_version":0},{"targeting":[{"negate":false,"pattern":"https:\/\/www.codementor.io\/dev-coding-bootcamp\/ruby-on-rails-training","match_operation":"simple","component":"url"}],"created_epoch_time":1453740446,"id":332624,"selector_version":0},{"targeting":[{"negate":false,"pattern":"https:\/\/www.codementor.io\/dev-coding-bootcamp\/web-development-course","match_operation":"simple","component":"url"}],"created_epoch_time":1453740397,"id":332618,"selector_version":0},{"targeting":[{"negate":false,"pattern":"https:\/\/www.codementor.io\/dev-coding-bootcamp\/angularjs-training","match_operation":"simple","component":"url"}],"created_epoch_time":1453740313,"id":332613,"selector_version":0},{"targeting":[{"negate":false,"pattern":"https:\/\/www.codementor.io\/onboarding\/hire","match_operation":"simple","component":"url"}],"created_epoch_time":1452657257,"id":312566,"selector_version":0},{"targeting":[{"negate":false,"pattern":"https:\/\/www.codementor.io\/Product-Hunt-Analysis-2015","match_operation":"simple","component":"url"}],"created_epoch_time":1451404747,"id":297636,"selector_version":0},{"targeting":[{"negate":false,"pattern":"https:\/\/www.codementor.io\/monthly\/l\/career","match_operation":"simple","component":"url"}],"created_epoch_time":1442975917,"id":179414,"selector_version":0}],"deferred_page_contents":[],"feedback_widgets":[],"r":0.157637266,"state_change_listen_mode":"manual"};
+
+window.hjBootstrap = window.hjBootstrap || function (scriptUrl) {
+    var b = function () {}, d = document, h = d.head || d.getElementsByTagName('head')[0], s, v, c, ct;
+
+    if (!d.addEventListener) {
+        return;
+    }
+
+    s = d.createElement('script');
+    s.src = scriptUrl;
+    h.appendChild(s);
+
+    ct = [
+        'iframe#_hjRemoteVarsFrame {',
+        'display: none !important; width: 1px !important; height: 1px !important; ' +
+        'opacity: 0 !important; pointer-events: none !important;',
+        '}'
+    ];
+    c = document.createElement('style');
+    c.type = 'text/css';
+    if (c.styleSheet) {
+        c.styleSheet.cssText = ct.join('');
+    } else {
+        c.appendChild(d.createTextNode(ct.join('')));
+    }
+    h.appendChild(c);
+
+    v = d.createElement('iframe');
+    v.style.cssText = ct[1];
+    v.name = '_hjRemoteVarsFrame';
+    v.title = 'Hotjar Remote Vars Frame';
+    v.id = '_hjRemoteVarsFrame';
+    v.src = 'https://' + (window._hjSettings.varsHost || 'vars.hotjar.com') + '/rcj-b2c1bce0a548059f409c021a46ea2224.html';
+    v.onload = function () {
+        b.varsLoaded = true;
+        if ((typeof hj != 'undefined') && hj.event) {
+            hj.event.signal('varsLoaded');
+        }
+    };
+    b.varsJar = v;
+
+    if (d.body) {
+        d.body.appendChild(v);
+    } else {
+        d.addEventListener('DOMContentLoaded', function () {
+            d.body.appendChild(v);
+        });
+    }
+    window.hjBootstrap = b;
+};
+
+
+hjBootstrap('https://script.hotjar.com/modules-ad7239fd73e7a4322fe55f26eed006e8.js');
