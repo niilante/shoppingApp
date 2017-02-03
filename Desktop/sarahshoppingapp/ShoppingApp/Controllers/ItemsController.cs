@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ShoppingApp.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   
     public class ItemsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -48,6 +48,7 @@ namespace ShoppingApp.Controllers
         }
 
         // GET: Items/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -58,6 +59,7 @@ namespace ShoppingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,Name,Price,MediaUrl,Description,Created,Updated")] Item item)
         {
             if (ModelState.IsValid)
@@ -113,6 +115,7 @@ namespace ShoppingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,Name,Price,Description,Created,Updated")] Item item)
         {
             if (ModelState.IsValid)
@@ -155,6 +158,7 @@ namespace ShoppingApp.Controllers
         // POST: Items/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Item item = db.Items.Find(id);
