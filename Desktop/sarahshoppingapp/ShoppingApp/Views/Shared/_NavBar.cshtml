@@ -38,7 +38,7 @@ _________________________________________________________ -->
                     <li>@Html.ActionLink("Products", "Index", "Items")</li>
                     <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
                 }
-                <li>@Html.ActionLink("Shopping Cart", "Index", "ShoppingCart")</li>
+                @*<li>@Html.ActionLink("Shopping Cart", "Index", "ShoppingCart")</li>*@
             </ul>
 
         </div>
@@ -49,7 +49,7 @@ _________________________________________________________ -->
             @Html.Partial("_LoginPartial")
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
+                <a href="@Href("~/shoppingcarts/index")" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
             </div>
             <!--/.nav-collapse -->
 

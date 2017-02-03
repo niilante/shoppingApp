@@ -37,9 +37,9 @@ textarea {
     float: right;
 }
 #Description {
-    width: 200px;
-    height: 400px;
-    max-width: 100px;
+    width: 400px;
+    height: 300px;
+    max-width: 500px;
 }
 
 #descriptiontwo {
