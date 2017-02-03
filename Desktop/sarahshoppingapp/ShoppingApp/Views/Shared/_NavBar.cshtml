@@ -6,10 +6,9 @@ _________________________________________________________ -->
     <div class="container">
         <div class="navbar-header">
 
-            <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand home">
                 Happy Pooch
-                <img src="~/Content/img/dog-logo.jpg" class="hidden-xs">
-                <img src="~/Content/img/dog-logo.jpg" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
+                <img src="~/Content/img/dog-logo.jpg" class="hidden-xs" title="title" alt="additional title" />
             </a>
             <div class="navbar-buttons">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -38,7 +37,7 @@ _________________________________________________________ -->
                     <li>@Html.ActionLink("Products", "Index", "Items")</li>
                     <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
                 }
-                @*<li>@Html.ActionLink("Shopping Cart", "Index", "ShoppingCart")</li>*@
+               
             </ul>
 
         </div>
