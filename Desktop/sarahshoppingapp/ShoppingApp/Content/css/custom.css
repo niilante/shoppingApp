@@ -46,3 +46,7 @@ textarea {
     width: 300px;
     max-height: 50px;
 }
+
+#order-summary {
+    width: 375px;
+}

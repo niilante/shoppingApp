@@ -47,9 +47,7 @@ _________________________________________________________ -->
             
             @Html.Partial("_LoginPartial")
 
-            <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="@Href("~/shoppingcarts/index")" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
-            </div>
+            @{Html.RenderAction("CartCount", "ShoppingCarts");}
             <!--/.nav-collapse -->
 
             <div class="navbar-collapse collapse right" id="search-not-mobile">

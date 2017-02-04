@@ -47,6 +47,40 @@ namespace ShoppingApp.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        public ActionResult Details(int id)
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var exShopping = db.ShoppingCarts
+                .Where(s => 
+                    s.CustomerId == user.Id && 
+                    s.ItemId == id
+                ).ToList();
+
+            if (exShopping.Count == 0)
+            {
+                ShoppingCart shoppingCart = new ShoppingCart();
+                shoppingCart.CustomerId = user.Id;
+                shoppingCart.ItemId = id;
+                shoppingCart.Item = db.Items.FirstOrDefault(i => i.Id == id);
+                shoppingCart.Count = 1;
+                shoppingCart.Created = System.DateTime.Now;
+                db.ShoppingCarts.Add(shoppingCart);
+                db.SaveChanges();
+                return RedirectToAction("Details", "Items", new { id = id });
+            }
+
+            foreach (var items in exShopping)
+            {
+                items.Count++;
+                db.Entry(items).Property("Count").IsModified = true;
+            };
+
+            db.SaveChanges();
+
+            return RedirectToAction("Details", "Items", new { id = id });
+        }
+
         // GET: Items/Create
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
@@ -63,15 +97,7 @@ namespace ShoppingApp.Controllers
         public ActionResult Create([Bind(Include = "Id,Name,Price,MediaUrl,Description,Created,Updated")] Item item)
         {
             if (ModelState.IsValid)
-            {
-                //ImageUploadValidator validator = new ImageUploadValidator();
-                //if (validator.IsWebFriendlyImage(Image))
-                //{
-                //    var fileName = Path.GetFileName(Image.FileName);
-                //    Image.SaveAs(Path.Combine(Server.MapPath("~/images/uploads/"), fileName));
-                //    item.MediaUrl = "~/images/uploads/" + fileName;
-                //}
-
+            {                         
                 if (Request.Files.Count == 1)
                 {
                     var image = Request.Files[0];
