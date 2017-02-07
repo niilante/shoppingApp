@@ -1,15 +1,16 @@
 ﻿@using Microsoft.AspNet.Identity
 <!-- *** NAVBAR ***
-_________________________________________________________ -->
+____________________________________________________ -->
+@*<script src="~/Scripts/jQuery/jQuery-2.1.4.min.js"></script>*@
+
 
 <div class="navbar navbar-default yamm" role="navigation" id="navbar">
     <div class="container">
-        <div class="navbar-header">
-
-            <a href="@Url.Action("Index", "Home")" class="navbar-brand home">
-                Happy Pooch
-                <img src="~/Content/img/dog-logo.jpg" class="hidden-xs" title="title" alt="additional title" />
-            </a>
+        <div class="navbar-header">           
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand home">
+                    Happy Pooch
+                    <img src="~/Content/img/dog-logo.jpg" class="hidden-xs" title="title" alt="additional title" />
+                </a>                   
             <div class="navbar-buttons">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
                     <span class="sr-only">Toggle navigation</span>
@@ -20,7 +21,7 @@ _________________________________________________________ -->
                     <i class="fa fa-search"></i>
                 </button>
                 <a class="btn btn-default navbar-toggle" href="basket.html">
-                    <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
+                    <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs"></span>
                 </a>
             </div>
         </div>
@@ -82,8 +83,13 @@ _________________________________________________________ -->
                 </small>
             </div>
         }
+       
     </div>
     <!-- /.container -->
+    
 </div>
 <!-- /#navbar -->
 <!-- *** NAVBAR END *** -->
+@*<script type="text/javascript" src="../../Scripts/jquery.autoresize.js"></script>*@
+@*<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>*@
+
