@@ -15,24 +15,15 @@
                     case "4":
                         Html.RenderPartial("~/Views/Shared/_Checkout4.cshtml");
                         break;
+                    case "5":
+                        Html.RenderPartial("~/Views/Shared/_ThankYouOrder.cshtml");
+                        break;
                     default:
                         Html.RenderPartial("~/Views/Shared/_Checkout1.cshtml");
                         break;
                 }
 
             </div>
-    
-            @*<div class="box-footer">
-                <div class="pull-left">
-                    <a href="@Url.Action("Index", "Home")" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
-                </div>
-                <div class="pull-right">
-                    <a class="btn btn-primary" href="@Url.Action("Checkout", "ShoppingCarts")">
-                        Proceed to delivery <i class="fa fa-chevron-right"></i>
-                    </a>
-                </div>
-            </div>*@
-
         </div>
     </div>
 

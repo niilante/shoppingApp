@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <ul class="breadcrumb">
                     <li>
-                        <a href="#">Home</a>
+                        <a href="@Url.Action("Index", "Home")">Home</a>
                     </li>
                     <li>Checkout - Address</li>
                 </ul>
@@ -20,123 +20,126 @@
             <div class="col-md-9" id="checkout">
 
                 <div class="box">
-                    <form method="post" action="checkout2.html">
-                        <h1>Checkout</h1>
-                        <ul class="nav nav-pills nav-justified">
-                            <li class="active">
-                                <a href="@Url.Action("Checkout", "ShoppingCarts", new { id = "1" })"><i class="fa fa-map-marker"></i><br>Address</a>
-                            </li>
-                            <li class="disabled">
-                                <a href="#"><i class="fa fa-truck"></i><br>Delivery Method</a>
-                            </li>
-                            <li class="disabled">
-                                <a href="#"><i class="fa fa-money"></i><br>Payment Method</a>
-</li>
-                            <li class="disabled">
-                                <a href="#"><i class="fa fa-eye"></i><br>Order Review</a>
-</li>
-                        </ul>
+                    @using (Html.BeginForm("CheckoutStep1", "ShoppingCarts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        
+                        @Html.AntiForgeryToken()
+                            <h1>Checkout</h1>
+                            <ul class="nav nav-pills nav-justified">
+                                <li class="active">
+                                    <a href="@Url.Action("Checkout", "ShoppingCarts", new { id = "1" })"><i class="fa fa-map-marker"></i><br>Address</a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#"><i class="fa fa-truck"></i><br>Delivery Method</a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#"><i class="fa fa-money"></i><br>Payment Method</a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#"><i class="fa fa-eye"></i><br>Order Review</a>
+                                </li>
+                            </ul>
 
-                        <div class="content">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="firstname">Firstname</label>
-                                        @Html.TextBoxFor(m => m.Customer.FirstName, new { maxlength = "50", @class = "form-control" })
-                                        @*<input type="text" class="form-control" id="firstname">*@
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="firstname">Firstname</label>
+                                            @Html.TextBoxFor(m => m.FirstName, new { maxlength = "50", @class = "form-control" })
+                                            @*<input type="text" class="form-control" id="firstname">*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="LastName">Lastname</label>
+                                            @Html.TextBoxFor(m => m.LastName, new { maxlength = "50", @class = "form-control" })
+                                            @*<input type="text" class="form-control" id="lastname">*@
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="LastName">Lastname</label>
-                                        @Html.TextBoxFor(m => m.Customer.LastName, new { maxlength = "50", @class = "form-control" })
-                                        @*<input type="text" class="form-control" id="lastname">*@
+                                <!-- /.row -->
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="company">Company</label>
+                                            @Html.TextBoxFor(m => m.Company, new { maxlength = "50", @class = "form-control" })
+                                            @*<input type="text" class="form-control" id="company">*@
+                                        </div>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="Address">Street Address</label>
+                                            @Html.TextBoxFor(m => m.Address, new { maxlength = "120", @class = "form-control" })
+                                            @*<input type="text" class="form-control" id="street">*@
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">
+                                            <label for="City">City</label>
+                                            @Html.TextBoxFor(m => m.City, new { maxlength = "50", @class = "form-control" })
+                                            @*<input type="text" class="form-control" id="city">*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">
+                                            <label for="Zipcode">ZIP</label>
+                                            @Html.TextBoxFor(m => m.Zipcode, new { maxlength = "10", @class = "form-control" })
+                                            @*<input type="text" class="form-control" id="zip">*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">
+                                            <label for="state">State</label>
+                                            @Html.DropDownListFor(x => x.State, ShoppingApp.Controllers.AccountController.States, new { @class = "form-control" })
+                                            @*<select class="form-control" id="state"></select>*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">
+                                            <label for="country">Country</label>
+                                            @Html.DropDownListFor(x => x.Country, ShoppingApp.Controllers.AccountController.Countries, new { @class = "form-control" })
+                                            @*<select class="form-control" id="country"></select>*@
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="Phone">Telephone</label>
+                                            @Html.TextBoxFor(m => m.Phone, new { maxlength = "20", @class = "form-control", @type = "tel", pattern = @"\d{3}[\-]\d{3}[\-]\d{4}", title = "Phone Number (Format: +444-555-1212)" })
+                                            @*<input id="phone" class="form-control" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number (Format: +444-555-1212)'>*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            @Html.TextBoxFor(m => m.Email, new { maxlength = "120", @class = "form-control", @type = "email" })
+                                            @*<input type="email" class="form-control" id="email">*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.row -->
+                            </div>
+
+                            <div class="box-footer">
+                                <div class="pull-left">
+                                    <button type="submit" @*href="@Url.Action("Index", "ShoppingCarts")"*@ class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to basket</button>
+                                </div>
+                                <div class="pull-right">
+                                    <button class="btn btn-primary" @*href="@Url.Action("Checkout", "ShoppingCarts", new { id = "2" })"*@>
+                                        Continue to Delivery Method <i class="fa fa-chevron-right"></i>
+                                    </button>
+                                    @*<button type="submit" class="btn btn-primary">
+                                            Continue to Delivery Method<i class="fa fa-chevron-right"></i>
+                                        </button>*@
                                 </div>
                             </div>
-                            <!-- /.row -->
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="company">Company</label>
-                                        @*@Html.TextBoxFor(m => m.Company, new { maxlength = "50", @class = "form-control" })*@
-                                        <input type="text" class="form-control" id="company">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="Address">Street Address</label>
-                                        @Html.TextBoxFor(m => m.Address, new { maxlength = "120", @class = "form-control" })
-                                        @*<input type="text" class="form-control" id="street">*@
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.row -->
-
-                            <div class="row">
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="form-group">
-                                        <label for="City">City</label>
-                                        @Html.TextBoxFor(m => m.City, new { maxlength = "50", @class = "form-control" })
-                                        @*<input type="text" class="form-control" id="city">*@
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="form-group">
-                                        <label for="Zipcode">ZIP</label>
-                                        @Html.TextBoxFor(m => m.Zipcode, new { maxlength = "10", @class="form-control" })
-                                        @*<input type="text" class="form-control" id="zip">*@
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="form-group">
-                                        <label for="state">State</label>
-                                        @Html.DropDownListFor(x => x.State, ShoppingApp.Controllers.AccountController.States, new { @class = "form-control" })
-                                        @*<select class="form-control" id="state"></select>*@
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="form-group">
-                                        <label for="country">Country</label>
-                                        @Html.DropDownListFor(x => x.Country, ShoppingApp.Controllers.AccountController.Countries, new { @class = "form-control" })
-                                        @*<select class="form-control" id="country"></select>*@
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="Phone">Telephone</label>
-                                        @Html.TextBoxFor(m => m.Phone, new { maxlength = "20", @class = "form-control", @type = "tel", pattern = @"\d{3}[\-]\d{3}[\-]\d{4}", title = "Phone Number (Format: +444-555-1212)" })
-                                        @*<input id="phone" class="form-control" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number (Format: +444-555-1212)'>*@
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        @Html.TextBoxFor(m => m.Customer.Email, new { maxlength = "120", @class = "form-control", @type = "email" })
-                                        @*<input type="email" class="form-control" id="email">*@
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- /.row -->
-                        </div>
-
-                        <div class="box-footer">
-                            <div class="pull-left">
-                                <a href="@Url.Action("Index", "ShoppingCarts")" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to basket</a>
-                            </div>
-                            <div class="pull-right">
-                                <a class="btn btn-primary" href="@Url.Action("Checkout", "ShoppingCarts", new { id = "2" })">
-                                    Continue to Delivery Method <i class="fa fa-chevron-right"></i>
-                                </a>
-                                @*<button type="submit" class="btn btn-primary">
-                                    Continue to Delivery Method<i class="fa fa-chevron-right"></i>
-                                </button>*@
-                            </div>
-                        </div>
-                    </form>
+                        }
                 </div>
                 <!-- /.box -->
 
@@ -151,7 +154,6 @@
                         <h3>Order summary</h3>
                     </div>
                     <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>

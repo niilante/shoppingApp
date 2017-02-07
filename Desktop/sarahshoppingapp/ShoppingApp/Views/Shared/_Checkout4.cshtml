@@ -1,4 +1,4 @@
-﻿@model ShoppingApp.Models.ShoppingCart
+﻿@model ShoppingApp.Models.Order
 @{
     ViewBag.Title = "Checkout4";
 }
@@ -20,7 +20,10 @@
             <div class="col-md-9" id="checkout">
 
                 <div class="box">
-                    <form method="post" action="checkout4.html">
+@using (Html.BeginForm("CheckoutStep4", "ShoppingCarts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+
+    @Html.AntiForgeryToken()
                         <h1>Checkout - Order review</h1>
                         <ul class="nav nav-pills nav-justified">
                             <li>
@@ -50,6 +53,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @for (var i = 0; i < ViewBag.shoppingCarts.Count; i++)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <input type="hidden" name="OrderDetails[@i].ItemId" value="@ViewBag.shoppingCarts[i].ItemId" />
+                                                    <input type="hidden" name="OrderDetails[@i].Quantity" value="@ViewBag.shoppingCarts[i].Count" />
+                                                    <input type="hidden" name="OrderDetails[@i].UnitPrice" value="@ViewBag.shoppingCarts[i].Item.Price" />
+                                                    <a href="#">
+                                                        <img src="img/detailsquare.jpg" alt="White Blouse Armani">
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <label>@ViewBag.shoppingCarts[i].Item.Name</label>
+                                                </td>
+                                                <td>2</td>
+                                                <td>$123.00</td>
+                                                <td>$0.00</td>
+                                                <td>$246.00</td>
+                                            </tr>
+                                        }
                                         <tr>
                                             <td>
                                                 <a href="#">
@@ -102,7 +125,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                }
                 </div>
                 <!-- /.box -->
 
