@@ -21,14 +21,32 @@ textarea {
     height: 90px;
 }
 
+.navbar-brand.home {
+    font-weight: bold;
+    color: darkslategrey;
+}
+
 .hidden-xs {
  height:60px;
  width: 75px;
 }
- 
-.img-responsiveTop, .itemTop {
-    height: 550px;
-    width: 600px;
+
+.img-responsiveTop {
+    height: 500px;
+    width: 500px;
+}
+
+.img-responsiveTop1 {
+    width: 200px;
+}
+
+#main-slider {
+    width: 500px;
+    margin: 0 auto;
+}
+
+#advantages {
+    margin-top: 1.5em;
 }
 
 .footer-image {
@@ -49,5 +67,9 @@ textarea {
 
 #order-summary {
     width: 375px;
+}
+
+.customer-menu {
+    width: 30%;
 }
 

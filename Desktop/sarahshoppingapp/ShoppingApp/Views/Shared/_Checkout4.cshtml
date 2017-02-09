@@ -21,6 +21,7 @@
 
                 <div class="box">
 @using (Html.BeginForm("CheckoutStep4", "ShoppingCarts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+
 {
 
     @Html.AntiForgeryToken()
@@ -61,51 +62,23 @@
                                                     <input type="hidden" name="OrderDetails[@i].Quantity" value="@ViewBag.shoppingCarts[i].Count" />
                                                     <input type="hidden" name="OrderDetails[@i].UnitPrice" value="@ViewBag.shoppingCarts[i].Item.Price" />
                                                     <a href="#">
-                                                        <img src="img/detailsquare.jpg" alt="White Blouse Armani">
+                                                        <img src="@Url.Content(ViewBag.shoppingCarts[i].Item.MediaUrl)" alt="@ViewBag.shoppingCarts[i].Item.Name">
                                                     </a>
                                                 </td>
                                                 <td>
                                                     <label>@ViewBag.shoppingCarts[i].Item.Name</label>
                                                 </td>
-                                                <td>2</td>
-                                                <td>$123.00</td>
-                                                <td>$0.00</td>
-                                                <td>$246.00</td>
+                                                <td>@ViewBag.shoppingCarts[i].Count</td>
+                                                <td>$@ViewBag.shoppingCarts[i].Item.Price</td>
+                                                <td></td>
+                                                <td>$@(ViewBag.shoppingCarts[i].Count * ViewBag.shoppingCarts[i].Item.Price)</td>
                                             </tr>
                                         }
-                                        <tr>
-                                            <td>
-                                                <a href="#">
-                                                    <img src="img/detailsquare.jpg" alt="White Blouse Armani">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="#">White Blouse Armani</a>
-                                            </td>
-                                            <td>2</td>
-                                            <td>$123.00</td>
-                                            <td>$0.00</td>
-                                            <td>$246.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="#">
-                                                    <img src="img/basketsquare.jpg" alt="Black Blouse Armani">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="#">Black Blouse Armani</a>
-                                            </td>
-                                            <td>1</td>
-                                            <td>$200.00</td>
-                                            <td>$0.00</td>
-                                            <td>$200.00</td>
-                                        </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th colspan="5">Total</th>
-                                            <th>$446.00</th>
+                                            <th>$@ViewBag.itemTotal</th>
                                         </tr>
                                     </tfoot>
                                 </table>
