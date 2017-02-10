@@ -22,7 +22,7 @@
                 <div class="box">
                     @using (Html.BeginForm("CheckoutStep1", "ShoppingCarts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
-                        
+
                         @Html.AntiForgeryToken()
                             <h1>Checkout</h1>
                             <ul class="nav nav-pills nav-justified">
@@ -46,64 +46,60 @@
                                         <div class="form-group">
                                             <label for="firstname">Firstname</label>
                                             @Html.TextBoxFor(m => m.FirstName, new { maxlength = "50", @class = "form-control" })
-                                            @*<input type="text" class="form-control" id="firstname">*@
+                                           
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="LastName">Lastname</label>
                                             @Html.TextBoxFor(m => m.LastName, new { maxlength = "50", @class = "form-control" })
-                                            @*<input type="text" class="form-control" id="lastname">*@
+                                            
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /.row -->
-
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="company">Company</label>
                                             @Html.TextBoxFor(m => m.Company, new { maxlength = "50", @class = "form-control" })
-                                            @*<input type="text" class="form-control" id="company">*@
+                                            
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="Address">Street Address</label>
                                             @Html.TextBoxFor(m => m.Address, new { maxlength = "120", @class = "form-control" })
-                                            @*<input type="text" class="form-control" id="street">*@
+                                           
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /.row -->
-
                                 <div class="row">
                                     <div class="col-sm-6 col-md-3">
                                         <div class="form-group">
                                             <label for="City">City</label>
                                             @Html.TextBoxFor(m => m.City, new { maxlength = "50", @class = "form-control" })
-                                            @*<input type="text" class="form-control" id="city">*@
+                                         
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <div class="form-group">
                                             <label for="Zipcode">ZIP</label>
                                             @Html.TextBoxFor(m => m.Zipcode, new { maxlength = "10", @class = "form-control" })
-                                            @*<input type="text" class="form-control" id="zip">*@
+                                          
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <div class="form-group">
                                             <label for="state">State</label>
                                             @Html.DropDownListFor(x => x.State, ShoppingApp.Controllers.AccountController.States, new { @class = "form-control" })
-                                            @*<select class="form-control" id="state"></select>*@
+                                         
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <div class="form-group">
                                             <label for="country">Country</label>
                                             @Html.DropDownListFor(x => x.Country, ShoppingApp.Controllers.AccountController.Countries, new { @class = "form-control" })
-                                            @*<select class="form-control" id="country"></select>*@
+                                           
                                         </div>
                                     </div>
 
@@ -111,81 +107,40 @@
                                         <div class="form-group">
                                             <label for="Phone">Telephone</label>
                                             @Html.TextBoxFor(m => m.Phone, new { maxlength = "20", @class = "form-control", @type = "tel", pattern = @"\d{3}[\-]\d{3}[\-]\d{4}", title = "Phone Number (Format: +444-555-1212)" })
-                                            @*<input id="phone" class="form-control" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number (Format: +444-555-1212)'>*@
+                                            
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="email">Email</label>
                                             @Html.TextBoxFor(m => m.Email, new { maxlength = "120", @class = "form-control", @type = "email" })
-                                            @*<input type="email" class="form-control" id="email">*@
+                                           
                                         </div>
                                     </div>
 
                                 </div>
-                                <!-- /.row -->
                             </div>
 
                             <div class="box-footer">
                                 <div class="pull-left">
-                                    <button type="submit" @*href="@Url.Action("Index", "ShoppingCarts")"*@ class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to basket</button>
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to basket</button>
                                 </div>
                                 <div class="pull-right">
-                                    <button class="btn btn-primary" @*href="@Url.Action("Checkout", "ShoppingCarts", new { id = "2" })"*@>
+                                    <button class="btn btn-primary">
                                         Continue to Delivery Method <i class="fa fa-chevron-right"></i>
                                     </button>
-                                    @*<button type="submit" class="btn btn-primary">
-                                            Continue to Delivery Method<i class="fa fa-chevron-right"></i>
-                                        </button>*@
                                 </div>
                             </div>
-                        }
+                    }
                 </div>
-                <!-- /.box -->
-
-
             </div>
-            <!-- /.col-md-9 -->
-
             <div class="col-md-3">
-
-                <div class="box" id="order-summary">
-                    <div class="box-header">
-                        <h3>Order summary</h3>
-                    </div>
-                    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>Order subtotal</td>
-                                    <th>$446.00</th>
-                                </tr>
-                                <tr>
-                                    <td>Shipping and handling</td>
-                                    <th>$10.00</th>
-                                </tr>
-                                <tr>
-                                    <td>Tax</td>
-                                    <th>$0.00</th>
-                                </tr>
-                                <tr class="total">
-                                    <td>Total</td>
-                                    <th>$456.00</th>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
+                @{
+                    Html.RenderPartial("~/Views/Shared/_OrderSummary.cshtml");
+                }
             </div>
-            <!-- /.col-md-3 -->
-
         </div>
-        <!-- /.container -->
     </div>
-    <!-- /#content -->
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

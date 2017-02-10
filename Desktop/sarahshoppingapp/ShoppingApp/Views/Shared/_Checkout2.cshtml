@@ -83,70 +83,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.row -->
-
                         </div>
-                        <!-- /.content -->
-
                         <div class="box-footer">
                             <div class="pull-left">
                                 <a href="@Url.Action("Checkout", "ShoppingCarts", new { id = "1" })" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to Address</a>
                             </div>
                             <div class="pull-right">
-                                <button class="btn btn-primary" type="submit" @*href="@Url.Action("Checkout", "ShoppingCarts", new { id = "3" })"*@>
+                                <button class="btn btn-primary" type="submit">
                                     Continue to Payment Method <i class="fa fa-chevron-right"></i>
-                                </button>
-                                @*<button type="submit" class="btn btn-primary">
-                                    Continue to Payment Method<i class="fa fa-chevron-right"></i>
-                                </button>*@
+                                </button>                             
                             </div>
                         </div>
 }
                 </div>
-                <!-- /.box -->
-
-
             </div>
-            <!-- /.col-md-9 -->
-
             <div class="col-md-3">
-
-                <div class="box" id="order-summary">
-                    <div class="box-header">
-                        <h3>Order summary</h3>
-                    </div>
-                    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>Order subtotal</td>
-                                    <th>$446.00</th>
-                                </tr>
-                                <tr>
-                                    <td>Shipping and handling</td>
-                                    <th>$10.00</th>
-                                </tr>
-                                <tr>
-                                    <td>Tax</td>
-                                    <th>$0.00</th>
-                                </tr>
-                                <tr class="total">
-                                    <td>Total</td>
-                                    <th>$456.00</th>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
+                @{
+                    Html.RenderPartial("~/Views/Shared/_OrderSummary.cshtml");
+                }
 
             </div>
-            <!-- /.col-md-3 -->
-
         </div>
-        <!-- /.container -->
     </div>
-    <!-- /#content -->
  </div>

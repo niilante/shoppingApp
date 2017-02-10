@@ -67,24 +67,8 @@
                                             <input type="radio" name="Payment" value="payment2">
                                         </div>
                                     </div>
-                                </div>
-
-                                @*<div class="col-sm-6">
-                                    <div class="box payment-method">
-
-                                        <h4>Cash on delivery</h4>
-
-                                        <p>You pay when you get it.</p>
-
-                                        <div class="box-footer text-center">
-
-                                            <input type="radio" name="Payment" value="payment3">
-                                        </div>
-                                    </div>
-                                </div>*@
+                                </div>                          
                             </div>
-                            <!-- /.row -->
-
                         </div>
                         <!-- /.content -->
 
@@ -94,62 +78,21 @@
                             </div>
                             <div class="pull-right">
                                 <button class="btn btn-primary" 
-                                        type="submit"
-                                        @*href="@Url.Action("Checkout", "ShoppingCarts", new { id = "4" })"*@
-                                    >
+                                        type="submit">
                                     Continue to Order Review <i class="fa fa-chevron-right"></i>
                                 </button>
-                                @*<button type="submit" class="btn btn-primary">
-                                    Continue to Order review<i class="fa fa-chevron-right"></i>
-                                </button>*@
+                               
                             </div>
                         </div>
 }
                 </div>
-                <!-- /.box -->
-
-
             </div>
-            <!-- /.col-md-9 -->
-
             <div class="col-md-3">
 
-                <div class="box" id="order-summary">
-                    <div class="box-header">
-                        <h3>Order summary</h3>
-                    </div>
-                    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>Order subtotal</td>
-                                    <th>$446.00</th>
-                                </tr>
-                                <tr>
-                                    <td>Shipping and handling</td>
-                                    <th>$10.00</th>
-                                </tr>
-                                <tr>
-                                    <td>Tax</td>
-                                    <th>$0.00</th>
-                                </tr>
-                                <tr class="total">
-                                    <td>Total</td>
-                                    <th>$456.00</th>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
+                @{
+                    Html.RenderPartial("~/Views/Shared/_OrderSummary.cshtml");
+                }
             </div>
-            <!-- /.col-md-3 -->
-
         </div>
-        <!-- /.container -->
     </div>
-    <!-- /#content -->
 </div>

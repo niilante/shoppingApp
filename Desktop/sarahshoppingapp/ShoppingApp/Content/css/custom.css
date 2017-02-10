@@ -4,6 +4,10 @@
     padding-right: 15px;
 }
 
+#content {
+    background-imageurl("paper.gif");
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -50,9 +54,11 @@ textarea {
 }
 
 .footer-image {
-    height: 275px;
-    width: 280px;
-    float: right;
+    height: 180px;
+    width: 250px;
+   float: right;
+
+    
 }
 #Description {
     width: 400px;
@@ -71,5 +77,12 @@ textarea {
 
 .customer-menu {
     width: 30%;
+}
+
+@media (max-width: 600px){
+    .footer-image {
+        width: 200px;
+        height: 125px;
+    }
 }
 
