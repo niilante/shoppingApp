@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+   
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Merriweather:400,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="~/content/css/bootstrap.css">
+    <link rel="stylesheet" href="~/content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/content/css/site.css">
+    <link rel="stylesheet" href="~/content/css/icons.css">
+    <link rel="stylesheet" href="~/content/css/animate.min.css">
+   
+    <title>Sarah's Blog</title>
+
+    @*@Styles.Render("~/Content/custom")*@
+
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    <title>
+       Sarah's Blog
+    </title>
+
+    <meta name="keywords" content="">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+
+    <link rel="shortcut icon" href="favicon.png">
+</head>
+<body>
+    @Html.Partial("_NavBar")
+
+    @RenderBody()
+
+   
+
+    <hr />
+    <!-- *** FOOTER ***
+    _________________________________________________________ -->
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 col-md-4 footer-widget">
+                        <h3>Statistics</h3>
+
+                        <span>Here are our stats! </span>
+
+                        <div class="stats">
+                            <div class="line">
+                                <span class="counter">27</span>
+                                <span class="caption">Articles</span>
+                            </div>
+                            <div class="line">
+                                <span class="counter">208</span>
+                                <span class="caption">Comments</span>
+                            </div>
+                            <div class="line">
+                                <span class="counter">2</span>
+                                <span class="caption">Authors</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-md-4 footer-widget">
+                        <h3>Recent posts</h3>
+                        <div class="post-recent-widget">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="media">
+                                        <a class="pull-left" href="post-video.html"><img class="media-object" src="/Content/img/img2.jpg" width="80" alt=""></a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a href="post-video.html">But I've never been to the moon!</a></h4>
+                                            <p class="post-date">may 10, 2014</p>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <a class="pull-left" href="post-typography.html"><img class="media-object" src="/Content/img/img1.jpg" width="80" alt=""></a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a href="post-typography.html">We don't have a brig</a></h4>
+                                            <p class="post-date">september 27, 2014</p>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <a class="pull-left" href="post-image.html"><img class="media-object" src="/Content/img/img3.jpg" width="80" alt=""></a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a href="post-image.html">Every other day it's food, food, food.</a></h4>
+                                            <p class="post-date">april 2, 2014</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <ul class="social-links pull-right">
+                    <li><a href="#link"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#link"><i class="icon-facebook"></i></a></li>
+                    <li><a href="#link"><i class="icon-googleplus"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade login" id="loginModal" aria-hidden="true">
+        <div class="modal-dialog login">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Login with</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box">
+                        <div class="form loginBox">
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "myform", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    <label class="control-label">Email</label>
+                                    <div class="controls">
+                                        <input id="Email" class="form-control" type="text" placeholder="Email" name="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">password</label>
+                                    <div class="controls">
+                                        <input id="Password" class="form-control" type="password" placeholder="Password" name="Password">
+                                    </div>
+                                </div>
+                                <p class="text-center"><a href="">Forgot password?</a></p>
+                                <input class="btn btn-block" type="submit" value="Login">
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="forgot login-footer">
+                        <span>
+                            Looking to
+                            <a href="#">create an account</a>
+                            ?
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- *** FOOTER END *** -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @*<script src="~/Content/js/bootstrap.min.js"></script>*@
+    
+    @*<script src="~/Content/js/jquery-1.9.1.min.js"></script>*@
+    <script src="~/Content/js/placeholders.min.js"></script>
+    <script src="~/Content/js/wow.min.js"></script>
+    <script src="~/Content/js/custom.js"></script>
+   
+  
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
