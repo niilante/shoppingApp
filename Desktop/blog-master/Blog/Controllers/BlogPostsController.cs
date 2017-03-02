@@ -9,8 +9,8 @@ using System.Web.Mvc;
 using Blog.Models;
 using Blog.Helpers;
 using System.IO;
-//using PagedList;
-//using PagedList.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Blog.Controllers
 {
@@ -21,9 +21,36 @@ namespace Blog.Controllers
         //public object ImageUploadValidator { get; private set; }
 
         // GET: BlogPosts
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Posts.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            //return View(db.Posts.ToList());
+            return View(db.Posts.AsQueryable().OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
+        }
+
+        [HttpPost]
+        public ActionResult Index(int? page, string searchStr)
+        {
+            //var listPosts = db.Posts.Where(p => p.Body.Contains(searchStr))
+            //    .Union(db.Posts.Where(p => p.Title.Contains(searchStr)))
+            //    .Union(db.Posts.Where(p => p.Comments.Any(c => c.Body.Contains(searchStr))))
+            //    .Union(db.Posts.Where(p => p.Comments.Any(c => c.Author.DisplayName.Contains(searchStr))))
+            //    .Union(db.Posts.Where(p => p.Comments.Any(c => c.Author.FirstName.Contains(searchStr))))
+            //    .Union(db.Posts.Where(p => p.Comments.Any(c => c.Author.LastName.Contains(searchStr))))
+            //    .AsQueryable();
+
+            var result = db.Posts.AsQueryable();
+            result = result.Where(p => p.Title.Contains(searchStr) || 
+            p.Body.Contains(searchStr) ||
+            p.Comments.Any(c => c.Body.Contains(searchStr) || 
+            c.Author.FirstName.Contains(searchStr) ||
+            c.Author.LastName.Contains(searchStr)));
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            //return View(db.Posts.ToList());
+            return View(listPosts.OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: BlogPosts/Details/5

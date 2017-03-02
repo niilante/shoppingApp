@@ -10,11 +10,11 @@ namespace Blog.Controllers
     {
         public ActionResult Index()
         {
-            //this.ControllerContext.HttpContext.User.Identity.Name;
-           // ViewBag.Message = 
-           //go to database and retrieve admin
-           //database has 5 admins
-           //how do you know which one to pick ?
+
+            // ViewBag.Message = 
+            //go to database and retrieve admin
+            //database has 5 admins
+            //how do you know which one to pick ?
 
             //admin1 created post1
             //admin2 created post2

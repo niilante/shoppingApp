@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Blog.Models.BlogPost>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList<Blog.Models.BlogPost>
 
 @{
     ViewBag.Title = "Index";
@@ -12,30 +14,39 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Created)
+            @Html.DisplayNameFor(model => model.First().Created)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Updated)
+            @Html.DisplayNameFor(model => model.First().Updated)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.First().Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Slug)
+            @Html.DisplayNameFor(model => model.First().Slug)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Body)
+            @Html.DisplayNameFor(model => model.First().Body)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MediaURL)
+            @Html.DisplayNameFor(model => model.First().MediaURL)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Published)
+            @Html.DisplayNameFor(model => model.First().Published)
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount	@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    s
+    @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class="form" }))
+    {
+        <div class="form-control-static">
+            <input id="searchStr" name="searchStr" type="text" placeholder="Search..." />
+            <input type="submit" value="->" />
+        </div>
+    }
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Created)
@@ -59,9 +70,9 @@
             @Html.DisplayFor(modelItem => item.Published)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Details", "Details", new { slug = item.Slug }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
            
         </td>
     </tr>
