@@ -1,0 +1,60 @@
+﻿@model Blog.Models.ContactMessage
+
+@{
+    ViewBag.Title = "Contact Justin";
+}
+
+<div class="container">
+  <h2>@ViewBag.Title</h2>
+  <h3>Web Developer For Hire!</h3>
+  <hr class="blog-ridges" />
+
+  <div class="row" style="font-size:110%;">
+    <div class="col-sm-5 col-xs-12">
+      <p class="big-white-font">I'm currently advancing my skills as a web developer while a student at Coder Foundry. That said, I can't wait to begin my career in web development. If you are seeking a developer with my experience, contact me. I look forward to hearing from you soon.</p>
+      <address class="comment-date">
+        <div>Justin Hammonds</div>
+        <div>406 Beall St NW</div>
+        <div>Lenoir, NC 28645</div>
+      </address>
+      <div>
+        <span class="big-white-font">Phone</span>
+        <span class="comment-date"><a href="tel:336-816-2598">336-816-2598</a></span>
+      </div>
+      <br style="margin-bottom:20px;" />
+      <div>
+        <span class="big-white-font">Email</span>
+        <span class="comment-date"><a href="mailto:justinrhammonds@gmail.com">justinrhammonds@gmail.com</a></span>
+      </div>
+      <br style="margin-bottom:20px;" />
+    </div>
+
+    <div class="col-sm-7 col-xs-12" id="contact-form">
+      @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            @Html.AntiForgeryToken()
+            @*----NAME----*@
+            <h4 class="hidden-sm">Your Name</h4>
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Enter Your First and Last Name", id = "fullname" })
+            @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+
+            @*----EMAIL----*@
+            <h4 class="hidden-sm">Your Email</h4>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter Your Email Address", @id = "email", @type = "email" })
+            @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
+
+            @*----MESSAGE----*@
+            <h4 class="hidden-sm">Leave Me a Message</h4>
+            @Html.TextAreaFor(m => m.Message, new { @class = "form-control", @placeholder = "Enter Your Message Here", @id = "message", @type = "email", @rows = "4" })
+            @Html.ValidationMessageFor(m => m.Message, null, new { @class = "text-danger" })
+            <br />
+            <button type="submit" class="btn btn-lg green-btn">Send</button>
+            <button class="btn btn-lg btn-primary">
+              @Html.ActionLink("Cancel", "Index", "Posts")
+            </button>
+      }
+    </div>
+  </div>
+</div>
+

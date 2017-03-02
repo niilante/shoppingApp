@@ -1,0 +1,32 @@
+﻿@model Blog.Models.CodeFirst.Comment
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="container">
+  <div class="row">
+    <h3>Edit Comment</h3>
+    <p>
+      <span class="comment-name">Written by @Model.Author.DisplayName</span>
+      <span class="comment-date">Posted on @Model.CommentCreated.ToString("dddd, MMMM d, yyyy 'at' h:mm tt")</span>
+    </p>
+    <hr class="blog-ridges" />
+  </div>
+  <!-- Edit Comment Section -->
+  <div class="row">
+    <form action="@Url.Action("Edit","Comments")" method="post">
+      <input type="hidden" name="PostId" value="@Model.PostId" />
+      <input type="hidden" name="Id" value="@Model.Id" />
+      <div class="form-group">
+        <textarea class="form-control" name="Body" rows="2">@Model.Body</textarea>
+      </div>
+      <input type="submit" value="Submit" class="btn green-btn" />
+      <button class="btn btn-primary">
+        @Html.ActionLink("Cancel", "Details", "Posts", new { slug = @Model.Post.Slug }, null)
+      </button>        
+    </form>
+  </div>
+</div>
+
+

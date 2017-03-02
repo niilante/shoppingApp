@@ -1,0 +1,8 @@
+﻿
+To-Do List
+-----------
+-style logout page
+
+-add change display name ability
+-add moderator change password requirement
+-test external login confirmation (getting the email fields)

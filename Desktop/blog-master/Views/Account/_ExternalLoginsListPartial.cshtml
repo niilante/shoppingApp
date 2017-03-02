@@ -1,0 +1,57 @@
+﻿@model Blog.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+<h3>Use another service to login.</h3>
+<hr class="blog-ridges" />
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (loginProviders.Count() == 0) {
+        <div>
+            <p>
+                There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                for details on setting up this ASP.NET application to support logging in via external services.
+            </p>
+        </div>
+    }
+    else {
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
+            @Html.AntiForgeryToken()
+            <div id="socialLoginList" class="center-button">
+                <p>
+                    @foreach (AuthenticationDescription p in loginProviders) {
+                      string socialname = "";
+                      switch (@p.AuthenticationType)
+                      {
+                        case "Yahoo":
+                          socialname = "fa-hacker-news";
+                          break;
+                        case "GitHub":
+                          socialname = "fa-github-square";
+                          break;
+                        case "Twitter":
+                          socialname = "fa-twitter-square";
+                          break;
+                        case "Google":
+                          socialname = "fa-google-plus-square";
+                          break;
+                        case "LinkedIn":
+                          socialname = "fa-linkedin-square";
+                          break;
+                        case "Microsoft":
+                          socialname = "fa-windows";
+                          break;
+                        case "Facebook":
+                          socialname = "fa-facebook-square";
+                          break;
+                      }
+
+                      <button type="submit" class="btn social btn-default btn-@p.AuthenticationType.ToLower()" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Login using your @p.Caption account">
+                        <i class="fa @socialname"></i>
+                        Login with @p.AuthenticationType
+                      </button>
+                    }
+                </p>
+            </div>
+        }
+    }
+}

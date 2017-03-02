@@ -1,0 +1,121 @@
+﻿<!-- 
+  1. decide which links to include in the header 
+  
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin Hammonds | Web & Software Developer</title>
+    <link rel="shortcut icon" href="~/favicon-teal.ico" />
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/bootstrap-social.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Fjalla+One|Abel' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/creative-brands.css" rel="stylesheet" />
+    <link href="~/Content/vertical-carousel.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+  <!-- ==========================
+  NAVIGATION - START
+  =========================== -->
+
+  <header>
+    <nav class="navbar navbar-inverse navbar-fixed-top"  id="blognav">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+          <a href="http://jhammonds.azurewebsites.net" id="brand" class="navbar-brand animated flipInX">
+            <span class="text-uppercase">Justin Hammonds </span>
+            <small class="tag"> web & software developer</small>
+          </a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <div class="container">
+            <ul class="nav navbar-nav navbar-right">
+              <li id="special-link">
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Create Post", "Create", "Posts")
+                }
+              </li>
+              <li>@Html.ActionLink("Blog", "Index", "Posts")</li>
+              <li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Contact", "Contact", "Home")
+                }
+              </li>
+              <li>@Html.Partial("_LoginPartial")</li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+  </header>
+
+  <!-- ==========================
+  NAVIGATION - END
+  =========================== -->
+
+    <main class="body-content">
+      <div class="sticky-search">
+        <button class="btn green-btn" data-placement="top" data-toggle="popover" @*data-title="Go ahead, Search My Blog" data-container="body"*@ @*type="button"*@ data-html="true" href="#" id="login">Go Ahead, Search My Blog</button>
+
+        <div id="popover-content" class="hide">
+          <form class="form-inline" action="@Url.Action("Index", "Posts", new { searchTerm=ViewBag.Search })">
+            <div>
+              <input placeholder="Anything Interest You?" type="text" name="searchTerm" value="@ViewBag.Search" class="form-control" id="popover-search" />
+              <input type="submit" value="Search" id="popover-button" class="btn btn-primary" />
+            </div>
+          </form>
+        </div>
+      </div>
+        @RenderBody()
+
+    </main>
+
+  <!-- ==========================
+  FOOTER - START
+  =========================== -->
+      <footer class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <ul class="brands brands-inline">
+                <li id="footerlinks"><a href="https://www.facebook.com/justin.hammonds.77"><i class="fa fa-facebook  hi-icon-effect-8"></i></a></li>
+                <li id="footerlinks"><a href="https://twitter.com/jhamm_84"><i class="fa fa-twitter"></i></a></li>
+                <li id="footerlinks"><a href="https://github.com/justinrhammonds"><i class="fa fa-github"></i></a></li>
+                <li id="footerlinks"><a href="https://www.linkedin.com/in/justinrhammonds"><i class="fa fa-linkedin"></i></a></li>
+              </ul>
+              <p><i class="fa fa-copyright"></i>@DateTimeOffset.Now.ToString("yyyy") Justin Hammonds | <span class="tag">All right reserved.</span></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- ==========================
+    FOOTER - END
+  =========================== -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jhscripts/creative-brands.js"></script>
+    <script src="~/Scripts/jquery.dotdotdot.min.js"></script>
+
+    <script>
+      $("[data-toggle=popover]").popover({
+        html: true,
+        content: function () {
+        return $('#popover-content').html();
+        }
+      });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,89 @@
+﻿@model Blog.Models.CodeFirst.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<img id="header-image" src="~/Content/second-movement.svg" />
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <h2>@Model.Title</h2>
+      <p class="post-date">
+        <span class="glyphicon glyphicon-time"></span> 
+        @Model.Created.ToString("dddd, MMMM dd, yyyy") 
+        @if (User.IsInRole("Admin"))
+        {
+            <button class="btn btn-sm green-btn">
+              <i class="fa fa-pencil-square-o"></i>
+              @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+            </button>
+            <button class="btn btn-sm green-btn">
+              <i class="fa fa-times"></i>
+              @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+            </button>
+        }
+      </p>
+      <hr class="blog-ridges">
+      <p>
+        <div class="image-container" >
+          @if (@Model.MediaUrl != null)
+          {
+              <img class="img-border img-responsive" src="@Url.Content(@Model.MediaUrl)" alt=""/>
+          }
+        </div>
+        @Html.Raw(Model.Body)
+      </p>
+      <div class="row">
+        <div class="col-xs-12">
+          @if ((System.Web.HttpContext.Current.User.Identity.IsAuthenticated))
+          {
+              <h4>Leave a Comment</h4>
+              <hr class="blog-ridges" />
+              <form action="@Url.Action("Create","Comments")" method="post">
+                <input type="hidden" name="PostId" value="@Model.Id" />
+                <div class="form-group">
+                  <textarea class="form-control" name="Body" rows="2"></textarea>
+                </div>
+                <input type="submit" value="Submit" class="btn green-btn" />
+              </form>
+          }
+          else
+          {
+              <h4 style="text-align:right;"><a href="@Url.Action("Login", "Account")">Login to Comment</a></h4>
+              <hr class="blog-ridges" />
+          }
+
+        </div>
+
+        <div class="col-xs-12 comment-list">
+          @foreach (var comment in Model.Comments)
+          {
+              <div class="col-xs-12">
+                <span class="comment-name">@comment.Author.DisplayName | </span><span class="comment-date">@comment.CommentCreated.ToString("dddd, MMMM d, yyyy")</span>
+
+                <div class="post-comment">
+                  <span class="comment-body">@comment.Body</span>
+                  <span>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                    {
+                        <button class="btn btn-sm green-btn">
+                          <i class="fa fa-pencil-square-o"></i>
+                          @Html.ActionLink("Edit", "Edit", "Comments", new { id = comment.Id }, null)
+                          </button>
+                          <button class="btn btn-sm green-btn">
+                            <i class="fa fa-pencil-square-o"></i>
+                            @Html.ActionLink("Delete", "Delete", "Comments", new { id = comment.Id }, null)
+                          </button>
+
+                      }
+                    </span>
+                  </div>
+              </div>
+          }
+      </div>
+      </div>
+      <br />
+      <div class="row center-button"><a class="comment-date pill-button" href="#">back to top</a></div>
+    </div>
+</div>
+

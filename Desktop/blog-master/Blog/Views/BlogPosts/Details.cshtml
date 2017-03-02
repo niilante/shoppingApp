@@ -1,0 +1,99 @@
+﻿@model Blog.Models.BlogPost
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BlogPost</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slug)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slug)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MediaURL)
+            
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.MediaURL)" class="media-url-preview" style="width:auto;height:175px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Published)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Published)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div>
+    @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="PostId" value="@Model.Id" />
+        <textarea name="Body">
+        </textarea>
+        <input type="submit" value="Add Comment" />
+
+
+    }
+</div>
+
+@foreach (var comment in Model.Comments)
+{
+    <ul>
+        <li>Posted by @comment.Author.FirstName @comment.Author.LastName at @comment.Created</li>
+        <li>@comment.Body</li>
+    </ul>
+
+}

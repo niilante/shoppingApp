@@ -1,0 +1,140 @@
+﻿@model IPagedList<Blog.Models.CodeFirst.Post>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Home Page";
+}
+       
+  <img id="header-image" src="~/Content/second-movement.svg" />
+
+  <div class="container" id="index-top">
+    <div class="row spacer"></div>
+  @foreach (var item in Model)
+  {
+      <div class="row">
+          @if (item.MediaUrl != null)
+          {
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <img class="img-border img-responsive" src="@Url.Content(item.MediaUrl)" alt="" />
+              <br />
+            </div>
+            <div class="col-md-8 col-sm-6 col-xs-12s">
+              <div class="col-sm-12">
+                <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                <p class="post-date">
+                  <span class="glyphicon glyphicon-time"></span>
+                  @item.Created.ToString("dddd, MMMM dd, yyyy")
+                  <span>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <button class="btn btn-sm green-btn">
+                          <i class="fa fa-pencil-square-o"></i>
+                          @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                        </button>
+                        <button class="btn btn-sm green-btn">
+                          <i class="fa fa-times"></i>
+                          @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </button>
+                    }
+                  </span>
+                </p>
+              </div>
+              <div class="excerpt">
+                <p>@Html.Raw(item.Body)</p>
+              </div>
+              <div>
+                @Html.ActionLink("Read More", "Details", new { slug = @item.Slug }, new { @class = "btn btn-primary read-more" })
+              </div>
+            </div>
+          }
+          else
+          {
+            <div class="col-sm-12">
+              <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+              <p class="post-date">
+                <span class="glyphicon glyphicon-time"></span>
+                @item.Created.ToString("dddd, MMMM dd, yyyy")
+                <span>
+                  @if (User.IsInRole("Admin"))
+                  {
+                      <button class="btn btn-sm green-btn">
+                        <i class="fa fa-pencil-square-o"></i>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                      </button>
+                      <button class="btn btn-sm green-btn">
+                        <i class="fa fa-times"></i>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                      </button>
+                  }
+                </span>
+              </p>
+              <div class="excerpt">
+                <p>@Html.Raw(item.Body)</p>
+              </div>
+              @Html.ActionLink("Read More", "Details", new { slug = @item.Slug }, new { @class = "btn btn-primary read-more" })
+            </div>
+          }
+        
+      </div>
+      <div class="row">    
+        <div class="col-sm-12">
+            <hr class="blog-ridges" />
+        </div>
+      </div>
+
+  }
+    <div class="row center-button"><a class="comment-date pill-button" href="#">back to top</a></div>
+    <!-- PagedList -->
+    @if (Model.PageCount > 1)
+    {
+        <br />
+        <p class="pages">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchFilter = ViewBag.Search }))</p>
+    }
+</div>
+
+@section Scripts {
+  <script>
+    $(document).ready(function () {
+
+      $(".excerpt").dotdotdot({
+        /*	The text to add as ellipsis. */
+        ellipsis: '... ',
+
+        /*	How to cut off the text/html: 'word'/'letter'/'children' */
+        wrap: 'word',
+
+        /*	Wrap-option fallback to 'letter' for long words */
+        fallbackToLetter: true,
+
+        /*	jQuery-selector for the element to keep and put after the ellipsis. */
+        after: null,
+
+        /*	Whether to update the ellipsis: true/'window' */
+        watch: false,
+
+        /*	Optionally set a max-height, can be a number or function.
+          If null, the height will be measured. */
+        height: 200,
+
+        /*	Deviation for the height-option. */
+        tolerance: 0,
+
+        /*	Callback function that is fired after the ellipsis is added,
+          receives two parameters: isTruncated(boolean), orgContent(string). */
+        callback: function (isTruncated, orgContent) { },
+
+        lastCharacter: {
+
+          /*	Remove these characters from the end of the truncated text. */
+          remove: [' ', ',', ';', '.', '!', '?'],
+
+          /*	Don't add an ellipsis if this array contains 
+            the last character of the truncated text. */
+          noEllipsis: []
+        }
+      });
+    });
+  </script>
+
+}
+

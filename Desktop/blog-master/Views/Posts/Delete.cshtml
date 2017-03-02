@@ -1,0 +1,71 @@
+﻿@model Blog.Models.CodeFirst.Post
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="container">
+  <h2>Are you sure you want to delete this post?</h2>
+  <hr class="blog-ridges" />
+
+
+
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+      @using (Html.BeginForm())
+      {
+          @Html.AntiForgeryToken()
+
+          <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-lg green-btn" />
+            <button class="btn btn-lg btn-primary">
+              @Html.ActionLink("Cancel", "Details", "Posts", new { slug = @Model.Slug }, null)
+            </button>
+          </div>
+      }
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h3>@Model.Title</h3>
+      <p class="post-date">
+        <span class="glyphicon glyphicon-time"></span>
+        @Model.Created.ToString("dddd, MMMM dd, yyyy")
+      </p>
+      <p>
+        <div class="image-container">
+          @if (@Model.MediaUrl != null)
+          {
+              <img class="img-border img-responsive" src="@Url.Content(@Model.MediaUrl)" alt="" style="margin: 0 auto" />
+          }
+        </div>
+        @Html.Raw(Model.Body)
+      </p>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-xs-12 comment-list">
+      <hr class="blog-ridges" />
+      @foreach (var comment in Model.Comments)
+      {
+          <div class="col-xs-12">
+            <span class="comment-name">@comment.Author.DisplayName | </span><span class="comment-date">@comment.CommentCreated.ToString("dddd, MMMM d, yyyy 'at' h:mm tt")</span>
+            <div class="post-comment">
+              <span class="blog-comment">@comment.Body</span>
+            </div>
+          </div>
+      }
+      <br />
+    </div>
+    <div class="row center-button"><a class="comment-date pill-button" href="#">back to top</a></div>
+  </div>
+ 
+
+
+</div>
