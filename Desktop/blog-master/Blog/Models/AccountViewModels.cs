@@ -11,7 +11,7 @@ namespace Blog.Models
         public string FirstName { get; set; }
 
         [Required]
-        [Display(Name = "Lirst Name")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required]
@@ -82,7 +82,7 @@ namespace Blog.Models
         public string FirstName { get; set; }
 
         [Required]
-        [Display(Name = "Lirst Name")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required]

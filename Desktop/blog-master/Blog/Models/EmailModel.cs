@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Blog.Models
 {
-    public class Email
+    public class EmailModel
     {
 
         [Required, Display(Name = "Name")]

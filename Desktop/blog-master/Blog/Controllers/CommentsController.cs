@@ -13,8 +13,9 @@ namespace Blog.Controllers
 {
     public class CommentsController : Controller
     {
+        
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        [RequireHttps]
         // GET: Comments
         public ActionResult Index()
         {

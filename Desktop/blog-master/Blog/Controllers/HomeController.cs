@@ -1,5 +1,6 @@
 ﻿using Blog.Models;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace Blog.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        [RequireHttps]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Contact(Email model)
+        public async Task<ActionResult> Contact(EmailModel model)
         {
             if (ModelState.IsValid)
             {
@@ -38,7 +39,7 @@ namespace Blog.Controllers
         }
         public ActionResult Index()
         {
-            var listPosts = db.Posts.Include("CreatedBy").ToList();
+            var listPosts = db.Posts.Include(p => p.CreatedBy).ToList();
             return View(listPosts);
         }
 

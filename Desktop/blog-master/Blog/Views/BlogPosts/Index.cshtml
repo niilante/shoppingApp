@@ -37,7 +37,7 @@
         <th></th>
     </tr>
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount	@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-    s
+    
     @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class="form" }))
     {
         <div class="form-control-static">

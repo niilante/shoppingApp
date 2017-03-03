@@ -1,4 +1,4 @@
-﻿@*@Model.Blog.Models.EmailModel
+﻿@model List<Blog.Models.EmailModel>
 @{
     ViewBag.Title = "Contact";
 }
@@ -8,22 +8,22 @@
 {     @Html.AntiForgeryToken() <h4>Send me a message.</h4>   
  <hr /> @Html.ValidationSummary("", new { @class = "text-danger" })     
     <div class="form-group">         
-    @Html.LabelFor(m => m.FromName, new { @class = "col-md-2 control-label" })         
+    @Html.LabelFor(m => m.First().FromName, new { @class = "col-md-2 control-label" })         
     <div class="col-md-10">            
-         @Html.TextBoxFor(m => m.FromName, new { @class = "form-control" })            
-         @Html.ValidationMessageFor(m => m.FromName)        
+         @Html.TextBoxFor(m => m.First().FromName, new { @class = "form-control" })            
+         @Html.ValidationMessageFor(m => m.First().FromName)        
          </div>    
      </div>     
      <div class="form-group">        
-     @Html.LabelFor(m => m.FromEmail, new { @class = "col-md-2 control-label" })         
+     @Html.LabelFor(m => m.First().FromEmail, new { @class = "col-md-2 control-label" })         
     <div class="col-md-10">           
-           @Html.TextBoxFor(m => m.FromEmail, new { @class = "form-control", placeholder = "example@email.com" })            
-          @Html.ValidationMessageFor(m => m.FromEmail)        
+          @Html.TextBoxFor(m => m.First().FromEmail, new { @class = "form-control", placeholder = "example@email.com" })            
+          @Html.ValidationMessageFor(m => m.First().FromEmail)        
     </div>    
    </div>    
       <div class="form-group">         
     <div class="col-md-offset-2 col-md-10">             
           <input type="submit" class="btn btn-primary" value="Send" />         
     </div>    
- </div>*@ 
+ </div> 
 } 

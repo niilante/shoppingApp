@@ -134,7 +134,7 @@
                                         <input id="Password" class="form-control" type="password" placeholder="Password" name="Password">
                                     </div>
                                 </div>
-                                <p class="text-center"><a href="">Forgot password?</a></p>
+                                <p class="text-center"><a href="@Url.Action("ForgotPassword","Account")">Forgot password?</a></p>
                                 <input class="btn btn-block" type="submit" value="Login">
                             }
                         </div>
@@ -144,7 +144,7 @@
                     <div class="forgot login-footer">
                         <span>
                             Looking to
-                            <a href="#">create an account</a>
+                            <a href="@Url.Action("Register","Account")">create an account</a>
                             ?
                         </span>
                     </div>

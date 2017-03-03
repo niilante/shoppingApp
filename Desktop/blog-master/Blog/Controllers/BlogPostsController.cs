@@ -17,7 +17,7 @@ namespace Blog.Controllers
     public class BlogPostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        [RequireHttps]
         //public object ImageUploadValidator { get; private set; }
 
         // GET: BlogPosts
@@ -32,7 +32,9 @@ namespace Blog.Controllers
         [HttpPost]
         public ActionResult Index(int? page, string searchStr)
         {
-            var listPosts = db.Posts.Where(p => p.Body.Contains(searchStr))
+            var listPosts = db.Posts
+                .Include(p => p.CreatedBy)
+                .Where(p => p.Body.Contains(searchStr))
                 .Union(db.Posts.Where(p => p.Title.Contains(searchStr)))
                 .Union(db.Posts.Where(p => p.Comments.Any(c => c.Body.Contains(searchStr))))
                 .Union(db.Posts.Where(p => p.Comments.Any(c => c.Author.DisplayName.Contains(searchStr))))
