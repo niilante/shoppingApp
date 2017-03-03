@@ -32,13 +32,13 @@ namespace Blog.Controllers
         [HttpPost]
         public ActionResult Index(int? page, string searchStr)
         {
-            //var listPosts = db.Posts.Where(p => p.Body.Contains(searchStr))
-            //    .Union(db.Posts.Where(p => p.Title.Contains(searchStr)))
-            //    .Union(db.Posts.Where(p => p.Comments.Any(c => c.Body.Contains(searchStr))))
-            //    .Union(db.Posts.Where(p => p.Comments.Any(c => c.Author.DisplayName.Contains(searchStr))))
-            //    .Union(db.Posts.Where(p => p.Comments.Any(c => c.Author.FirstName.Contains(searchStr))))
-            //    .Union(db.Posts.Where(p => p.Comments.Any(c => c.Author.LastName.Contains(searchStr))))
-            //    .AsQueryable();
+            var listPosts = db.Posts.Where(p => p.Body.Contains(searchStr))
+                .Union(db.Posts.Where(p => p.Title.Contains(searchStr)))
+                .Union(db.Posts.Where(p => p.Comments.Any(c => c.Body.Contains(searchStr))))
+                .Union(db.Posts.Where(p => p.Comments.Any(c => c.Author.DisplayName.Contains(searchStr))))
+                .Union(db.Posts.Where(p => p.Comments.Any(c => c.Author.FirstName.Contains(searchStr))))
+                .Union(db.Posts.Where(p => p.Comments.Any(c => c.Author.LastName.Contains(searchStr))))
+                .AsQueryable();
 
             var result = db.Posts.AsQueryable();
             result = result.Where(p => p.Title.Contains(searchStr) || 
@@ -80,6 +80,7 @@ namespace Blog.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Body,MediaURL,Published")] BlogPost blogPost,
             HttpPostedFileBase image)
@@ -110,7 +111,7 @@ namespace Blog.Controllers
 
                 blogPost.Created = DateTimeOffset.Now;
                 var userName = this.ControllerContext.HttpContext.User.Identity.Name;
-                var postCreator = db.ApplicationUsers.FirstOrDefault(u => u.UserName == userName);
+                var postCreator = db.Users.FirstOrDefault(u => u.UserName == userName);
                 blogPost.CreatedBy = postCreator;
                 db.Posts.Add(blogPost);
                 db.SaveChanges();

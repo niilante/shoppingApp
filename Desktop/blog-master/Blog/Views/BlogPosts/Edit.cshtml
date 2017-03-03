@@ -47,7 +47,7 @@
             <div>
                 @*@Html.EditorFor(model => model.MediaURL, new { htmlAttributes = new { @class = "form-control" } })*@
                 <input type="file" id="fileUpload" name="fileUpload" />
-                <img src="@Url.Content(Model.MediaURL)" class="media-url-preview" style="width:175px;height:175px;margin-top:1em;" />
+                <img id="fileUploadPreview" src="@Url.Content(Model.MediaURL)" class="media-url-preview" style="width:175px;height:175px;margin-top:1em;" />
             </div>
         </div>
         <div class="form-group">
@@ -67,11 +67,28 @@
     <script src="~/Scripts/tinymce/tinymce.min.js"></script>
     <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
     <script type="text/javascript">
-    $(function () {
-    tinymce.init({
-    selector: '#editor'
-    });
-    });
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#fileUploadPreview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#fileUpload").change(function () {
+            readURL(this);
+        });
+
+        $(function () {
+            tinymce.init({
+            selector: '#editor'
+            });
+        });
     </script>
 
 }

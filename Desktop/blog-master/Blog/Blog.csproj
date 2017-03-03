@@ -200,6 +200,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogPostsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\EmailModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -211,6 +212,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogPost.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

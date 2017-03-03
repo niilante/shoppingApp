@@ -57,10 +57,10 @@
 
         <div class="form-group">
 
-            @Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Media URL</label>@*@Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 <input name="image" type="file" class="form-control" id="fileUpload" />
-                @*<img src="@Url.Content(Model.MediaURL)" class="media-url-preview" style="width:auto;height:200px;" />*@
+                <img id="fileUploadPreview" class="media-url-preview" style="width:auto;height:200px;" />
             </div>
 
             @*<div class="col-md-10">
@@ -97,11 +97,28 @@
     <script src="~/Scripts/tinymce/tinymce.min.js"></script>
     <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
     <script type="text/javascript">
-$(function () {
-tinymce.init({
-selector: '#editor'
-});
-});
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#fileUploadPreview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#fileUpload").change(function () {
+            readURL(this);
+        });
+
+        $(function () {
+        tinymce.init({
+            selector: '#editor'
+            });
+        });
     </script>
 
 }

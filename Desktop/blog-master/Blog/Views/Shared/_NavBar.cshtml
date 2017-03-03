@@ -41,6 +41,10 @@
                        href="@Url.Action("Index", "Comments")"
                        data-toggle="modal" 
                        data-target="@Url.Action("Comments", "Index", "Comments")">Comments</a>
+                    <a class="btn btn-blog outline-white pull-left"
+                       href="@Url.Action("Index", "Comments")"
+                       data-toggle="modal"
+                       data-target="@Url.Action("Home", "Contact")">Contact</a>
                     }
 
                     @if (Request.IsAuthenticated && User.IsInRole("Moderator"))
