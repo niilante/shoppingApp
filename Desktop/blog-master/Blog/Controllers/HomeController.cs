@@ -29,8 +29,6 @@ namespace Blog.Controllers
 
                     var email = new MailMessage(from, ConfigurationManager.AppSettings["emailto"]) { Subject = "Portfolio Contact Email", Body = string.Format(body, model.FromName, model.FromEmail, model.Body), IsBodyHtml = true };
 
-                    //var svc = new PersonalEmail(); await svc.SendAsync(email);
-
                     return RedirectToAction("Sent");
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message); await Task.FromResult(0); }

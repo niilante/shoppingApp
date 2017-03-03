@@ -18,14 +18,12 @@ namespace Blog.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         [RequireHttps]
-        //public object ImageUploadValidator { get; private set; }
 
         // GET: BlogPosts
         public ActionResult Index(int? page)
         {
             int pageSize = 3;
-            int pageNumber = (page ?? 1);
-            //return View(db.Posts.ToList());
+            int pageNumber = (page ?? 1);        
             return View(db.Posts.AsQueryable().OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
         }
 
@@ -51,12 +49,11 @@ namespace Blog.Controllers
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            //return View(db.Posts.ToList());
             return View(listPosts.OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: BlogPosts/Details/5
-        [Authorize]
+       
         public ActionResult Details(string Slug)
         {
             if (String.IsNullOrWhiteSpace(Slug))
@@ -82,7 +79,7 @@ namespace Blog.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Body,MediaURL,Published")] BlogPost blogPost,
             HttpPostedFileBase image)

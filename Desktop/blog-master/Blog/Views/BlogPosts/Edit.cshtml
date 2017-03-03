@@ -45,7 +45,6 @@
             @Html.HiddenFor(model => model.MediaURL)
             @Html.Label("Image Upload", htmlAttributes: new { @class = "control-label col-md-2" })
             <div>
-                @*@Html.EditorFor(model => model.MediaURL, new { htmlAttributes = new { @class = "form-control" } })*@
                 <input type="file" id="fileUpload" name="fileUpload" />
                 <img id="fileUploadPreview" src="@Url.Content(Model.MediaURL)" class="media-url-preview" style="width:175px;height:175px;margin-top:1em;" />
             </div>

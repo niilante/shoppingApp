@@ -5,14 +5,12 @@
 
 <!-- Top Navigation -->
 
-
 <section id="hero" class="light-typo">
     <div id="cover-image" class="image-bg animated fadeIn"></div>
     <div class="container welcome-content">
         <div class="middle-text">
             <h1>Key Lime Pie Blog</h1>
             <h2><b>Key Lime Pie Blog</b> is a blog theme built with Bootstrap</h2>
-            @*<a class="btn smooth-scroll" href="#start">Get Stated</a>*@
         </div>
     </div>
 </section>
@@ -26,11 +24,11 @@
                     <article class="clearfix">
                         <div class="post-date">
                             @blogPost.Created | @blogPost.CreatedBy.FirstName @blogPost.CreatedBy.LastName
-                            <span><a href="@Url.Action("Details", "BlogPosts")">comments</a></span>
+                            <span>@Html.ActionLink("Details", "BlogPosts", "Details")</span> | Comments
                         </div>
                         <h2>@blogPost.Title</h2>
                         <p>
-                            @blogPost.Body <a class="" href="@Url.Action("Details", "BlogPosts")">read more</a>
+                            @blogPost.Body <a class="" href="@Html.ActionLink("Details", "BlogPosts")">read more</a>
                         </p>
                     </article>
                 </div>

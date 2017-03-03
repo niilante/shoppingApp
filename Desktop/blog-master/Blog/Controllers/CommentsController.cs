@@ -95,6 +95,7 @@ namespace Blog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles = "Moderator")]
         [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,PostId,AuthorId,Body,Created,Updated")] Comment comment)

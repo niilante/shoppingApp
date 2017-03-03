@@ -490,6 +490,7 @@
     <Content Include="private.config" />
     <Content Include="Views\Account\ResendEmailConfirmation.cshtml" />
     <Content Include="Views\Account\ConfirmationSent.cshtml" />
+    <Content Include="Views\Shared\_SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />
@@ -520,7 +521,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56064/</IISUrl>
+          <IISUrl>https://localhost:44331/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

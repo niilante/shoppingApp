@@ -15,22 +15,6 @@
         <h4>BlogPost</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Created, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Created, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Created, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Updated, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Updated, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Updated, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -57,16 +41,11 @@
 
         <div class="form-group">
 
-            <label class="control-label col-md-2">Media URL</label>@*@Html.LabelFor(model => model.MediaURL, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">Media URL</label>
             <div class="col-md-10">
                 <input name="image" type="file" class="form-control" id="fileUpload" />
                 <img id="fileUploadPreview" class="media-url-preview" style="width:auto;height:200px;" />
             </div>
-
-            @*<div class="col-md-10">
-                @Html.EditorFor(model => model.MediaURL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
-            </div>*@
         </div>
 
         <div class="form-group">

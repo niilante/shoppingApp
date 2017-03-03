@@ -12,6 +12,16 @@
                         <small>
                             Welcome, @User.Identity.Name!
                         </small>
+                        <div class="search-box-nav" style="margin-top:">
+                            @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
+                            {
+                                <div class="form-control-static">
+                                    <input id="searchStr" name="searchStr" type="text" placeholder="Search..." style="height:40px;width:auto;" />
+                                    <input type="submit" value="Search" style="height:50px;width:auto;margin-top:.5em" />
+
+                                </div>
+                            }
+                        </div>
                     </div>
                 }
                 else
@@ -73,8 +83,7 @@
                         <a class="btn btn-blog outline-white pull-right"
                            href="@Url.Action("Register","Account")">Register</a>
                     }
-                    
-                    
+                     
                 </div>
             </div>
         </div>
