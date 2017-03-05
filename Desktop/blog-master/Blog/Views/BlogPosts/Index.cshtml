@@ -31,20 +31,13 @@
         <th>
             @Html.DisplayNameFor(model => model.First().MediaURL)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.First().Published)
-        </th>
+        </th>*@
         <th></th>
     </tr>
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount	@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
     
-    @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class="form" }))
-    {
-        <div class="form-control-static">
-            <input id="searchStr" name="searchStr" type="text" placeholder="Search..." />
-            <input type="submit" value="->" />
-        </div>
-    }
 @foreach (var item in Model)
 {
     <tr>
@@ -66,9 +59,9 @@
         <td>
             <img src="@Url.Content(item.MediaURL)" class="media-url-preview" style="width:auto;height:175px;" />
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Published)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Details", "Details", new { slug = item.Slug }) |

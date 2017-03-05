@@ -23,7 +23,7 @@ namespace Blog.Models
         [AllowHtml]
         public string Body { get; set; }
         public string MediaURL { get; set; }
-        public bool Published { get; set; }
+        //public bool Published { get; set; }
         public ApplicationUser CreatedBy { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }

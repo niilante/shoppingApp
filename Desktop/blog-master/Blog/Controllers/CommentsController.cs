@@ -11,11 +11,12 @@ using Microsoft.AspNet.Identity;
 
 namespace Blog.Controllers
 {
+    [RequireHttps]
     public class CommentsController : Controller
     {
         
         private ApplicationDbContext db = new ApplicationDbContext();
-        [RequireHttps]
+       
         // GET: Comments
         public ActionResult Index()
         {
@@ -49,11 +50,9 @@ namespace Blog.Controllers
         // POST: Comments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[Authorize]
         [HttpPost]
-        [Authorize]
-        [Authorize(Roles = "Moderator")]
-        [Authorize(Roles = "Admin")]
+        [RequireHttps]
+        [Authorize(Roles = "Admin,Moderator")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,PostId,AuthorId,Body,Created,Updated")] Comment comment)
         {
@@ -61,7 +60,6 @@ namespace Blog.Controllers
             {
                
                 var user = db.Users.Find(User.Identity.GetUserId());
-                //comment.Author = user.DisplayName.ToString;
                 comment.AuthorId = user.Id;
                 comment.Created = DateTimeOffset.Now;
                 db.Comments.Add(comment);
@@ -71,11 +69,18 @@ namespace Blog.Controllers
 
             ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
             //return View(comment);
-            return RedirectToAction("Details", "BlogPosts" );
+            
+                return RedirectToAction("Details", "BlogPosts");
+                
+         
         }
 
-        // GET: Comments/Edit/5
-        public ActionResult Edit(int? id)
+      
+        
+
+
+    // GET: Comments/Edit/5
+    public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -95,7 +100,6 @@ namespace Blog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles = "Moderator")]
         [Authorize(Roles = "Admin")]
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,PostId,AuthorId,Body,Created,Updated")] Comment comment)

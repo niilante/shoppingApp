@@ -2,91 +2,56 @@
 @{
     ViewBag.Title = "_NavBar";
 }
-<div id="wrap">
-    <div id="main-nav" class="">
-        <div class="container">
-            <div class="nav-header">
-                @if (Request.IsAuthenticated)
-                {
-                    <div class="username" style="text-align:right;clear:both;">
-                        <small>
-                            Welcome, @User.Identity.Name!
-                        </small>
-                        <div class="search-box-nav" style="margin-top:">
-                            @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
-                            {
-                                <div class="form-control-static">
-                                    <input id="searchStr" name="searchStr" type="text" placeholder="Search..." style="height:40px;width:auto;" />
-                                    <input type="submit" value="Search" style="height:50px;width:auto;margin-top:.5em" />
 
-                                </div>
-                            }
-                        </div>
-                    </div>
-                }
-                else
-                {
-                    <a class="btn btn-blog outline-white pull-right"
-                       href="" data-toggle="modal"
-                       data-target="#loginModal">Login</a>
-                }
-            </div>
-        </div>
-    </div>
-</div>
-<body id="home">
-  
     <div id="wrap">
-        <div id="main-nav" class="">
-            <div class="container">
-                <div class="nav-header">
-                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                    {
+            <div id="main-nav" class="">
+                <div class="container">
+                    <div class="nav-header">
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
 
-                    <a class="btn btn-blog outline-white pull-left left-buttons"
-                       href="@Url.Action("Index", "BlogPosts")"
-                       data-toggle="modal" 
-                       data-target="@Url.Action("Posts", "Index", "BlogPosts")">Posts</a>
-                    <a class="btn btn-blog outline-white pull-left" 
-                       href="@Url.Action("Index", "Comments")"
-                       data-toggle="modal" 
-                       data-target="@Url.Action("Comments", "Index", "Comments")">Comments</a>
-                    <a class="btn btn-blog outline-white pull-left"
-                       href="@Url.Action("Home", "Contact")"
-                       data-toggle="modal"
-                       data-target="@Url.Action("Contact", "Home")">Contact</a>
-                    }
+                            <a class="btn btn-blog outline-white pull-left left-buttons"
+                               href="@Url.Action("Index", "BlogPosts")"
+                               data-toggle="modal"
+                               data-target="@Url.Action("Posts", "Index", "BlogPosts")">Posts</a>
+                            <a class="btn btn-blog outline-white pull-left"
+                               href="@Url.Action("Index", "Comments")"
+                               data-toggle="modal"
+                               data-target="@Url.Action("Comments", "Index", "Comments")">Comments</a>
+                            
+                        }
+                        @if (Request.IsAuthenticated && User.IsInRole("Moderator"))
+                        {
+                            <a class="btn btn-blog outline-white pull-left"
+                               href="@Url.Action("Index", "Comments")"
+                               data-toggle="modal"
+                               data-target="@Url.Action("Comments", "Index", "Comments")">Comments</a>
 
-                    @if (Request.IsAuthenticated && User.IsInRole("Moderator"))
-                    {
-                        <a class="btn btn-blog outline-white pull-left"
-                           href="@Url.Action("Index", "Comments")"
-                           data-toggle="modal"
-                           data-target="@Url.Action("Comments", "Index", "Comments")">Comments</a>
+                        }
+                        @if (Request.IsAuthenticated)
+                        {
+                            <a class="btn btn-blog outline-white pull-right"
+                               href="@Url.Action("LogOff", "Account")">Logout</a>
+                            <div class="username" style="text-align:right;color:white;padding:0px;">
+                                <small>
+                                    Welcome, @User.Identity.Name! &nbsp
+                                </small>
+                            </div>
 
-                    }
 
-                    @if (Request.IsAuthenticated)
-                    {
-                        <a class="btn btn-blog outline-white pull-right"
-                           href="@Url.Action("LogOff", "Account")">Logout</a>
-                        <div class="username" style="text-align:right;color:white;padding:0px;">
-                            <small>
-                                Welcome, @User.Identity.Name! &nbsp 
-                            </small>
-                        </div>
-                    }
-                    else
-                    {
-                        <a class="btn btn-blog outline-white pull-right"
-                           href="#" data-toggle="modal" data-target="#loginModal">Login</a>
-                        <a class="btn btn-blog outline-white pull-right"
-                           href="@Url.Action("Register","Account")">Register</a>
-                    }
-                     
+                        }
+                      
+                        else
+                        {
+                            <a class="btn btn-blog outline-white pull-right"
+                               href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+                            <a class="btn btn-blog outline-white pull-right"
+                               href="@Url.Action("Register","Account")">Register</a>
+                        }
+
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
-    </body>
+  
 

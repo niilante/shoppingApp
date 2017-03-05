@@ -982,10 +982,7 @@ article .btn {
 .input-group .form-control:focus{
 	border-right-width: 0px;
 }
-#main-footer,
-#social {
-	padding: 40px 0 20px;
-}
+
 .checkbox, .radio {
 	margin-bottom: 12px;
 	padding-left: 32px;

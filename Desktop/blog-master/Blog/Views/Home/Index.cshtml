@@ -17,22 +17,25 @@
 
 @foreach (var blogPost in Model)
 {
-    <div class="col-md-3">
-        <div id="start" class="container content">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <article class="clearfix">
-                        <div class="post-date">
-                            @blogPost.Created | @blogPost.CreatedBy.FirstName @blogPost.CreatedBy.LastName
-                            <span>@Html.ActionLink("Details", "BlogPosts", "Details")</span> | Comments
-                        </div>
-                        <h2>@blogPost.Title</h2>
-                        <p>
-                            @blogPost.Body <a class="" href="@Html.ActionLink("Details", "BlogPosts")">read more</a>
-                        </p>
-                    </article>
-                </div>
+    <div id="start" class="container content">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <article class="clearfix">
+                    <h2>@blogPost.Title</h2>
+                    <div class="post-date">
+                        @blogPost.Created | @blogPost.CreatedBy.FirstName @blogPost.CreatedBy.LastName                                              
+                    </div>
+                    <p>
+                        @*@blogPost.Body @Html.ActionLink("Details", "Index", "BlogPosts")*@
+                        @Html.Raw(blogPost.Body)
+                    </p>
+                    <p>
+                        @Html.ActionLink("Details", "Details", "BlogPosts", new { slug = blogPost.Slug }, null)
+                    </p>
+                </article>
             </div>
+            <div class="col-md-1"></div>
         </div>
     </div>
 }

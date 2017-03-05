@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="~/content/css/icons.css">
     <link rel="stylesheet" href="~/content/css/animate.min.css">
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"> 
-   
+    <link rel="shortcut icon" href="images/favicon/favicon.png">
+    
     <title>Sarah's Blog</title>
 
     @*@Styles.Render("~/Content/custom")*@
@@ -35,68 +36,79 @@
     @RenderBody()
 
    
-
     <hr />
     <!-- *** FOOTER ***
     _________________________________________________________ -->
+
     <footer>
         <div class="footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4 col-md-4 footer-widget">
-                        <h3>Statistics</h3>
-
-                        <span>Here are our stats! </span>
-
-                        <div class="stats">
-                            <div class="line">
-                                <span class="counter">27</span>
-                                <span class="caption">Articles</span>
-                            </div>
-                            <div class="line">
-                                <span class="counter">208</span>
-                                <span class="caption">Comments</span>
-                            </div>
-                            <div class="line">
-                                <span class="counter">2</span>
-                                <span class="caption">Authors</span>
+                    <div class="search-box-nav pull-left">
+                        @if (Request.IsAuthenticated)
+                        {
+                       using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post, new { @class = "form" }))
+                        {
+                            <form class="form-control-static">
+                                <input id="searchStr" name="searchStr" type="text" placeholder="Search My Blog..." style="height:auto;width:150px;" />
+                                <input type="submit" value="Search" style="height:auto;width:80px;background-color:#80B959;color:gray;margin-top:1em;" />
+                            </form>
+                        }
+                        }
+                    </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4 footer-widget">
+                            <h3>Statistics</h3>
+                            <span>Here are our stats! </span>
+                            <div class="stats">
+                                <div class="line">
+                                    <span class="counter">27</span>
+                                    <span class="caption">Articles</span>
+                                </div>
+                                <div class="line">
+                                    <span class="counter">208</span>
+                                    <span class="caption">Comments</span>
+                                </div>
+                                <div class="line">
+                                    <span class="counter">2</span>
+                                    <span class="caption">Authors</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-sm-4 col-md-4 footer-widget">
-                        <h3>Recent posts</h3>
-                        <div class="post-recent-widget">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="media">
-                                        <a class="pull-left" href="post-video.html"><img class="media-object" src="/Content/img/img2.jpg" width="80" alt=""></a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading"><a href="post-video.html">But I've never been to the moon!</a></h4>
-                                            <p class="post-date">may 10, 2014</p>
+                        <div class="col-sm-4 col-md-4 footer-widget">
+                            <h3>Recent posts</h3>
+                            <div class="post-recent-widget">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="media">
+                                            <a class="pull-left" href="post-video.html"><img class="media-object" src="/Content/img/img2.jpg" width="80" alt=""></a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><a href="post-video.html">But I've never been to the moon!</a></h4>
+                                                <p class="post-date">may 10, 2014</p>
+                                            </div>
+                                        </div>
+                                        <div class="media">
+                                            <a class="pull-left" href="post-typography.html"><img class="media-object" src="/Content/img/img1.jpg" width="80" alt=""></a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><a href="post-typography.html">We don't have a brig</a></h4>
+                                                <p class="post-date">september 27, 2014</p>
+                                            </div>
+                                        </div>
+                                        <div class="media">
+                                            <a class="pull-left" href="post-image.html"><img class="media-object" src="/Content/img/img3.jpg" width="80" alt=""></a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading"><a href="post-image.html">Every other day it's food, food, food.</a></h4>
+                                                <p class="post-date">april 2, 2014</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="media">
-                                        <a class="pull-left" href="post-typography.html"><img class="media-object" src="/Content/img/img1.jpg" width="80" alt=""></a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading"><a href="post-typography.html">We don't have a brig</a></h4>
-                                            <p class="post-date">september 27, 2014</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <a class="pull-left" href="post-image.html"><img class="media-object" src="/Content/img/img3.jpg" width="80" alt=""></a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading"><a href="post-image.html">Every other day it's food, food, food.</a></h4>
-                                            <p class="post-date">april 2, 2014</p>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </footer>
 

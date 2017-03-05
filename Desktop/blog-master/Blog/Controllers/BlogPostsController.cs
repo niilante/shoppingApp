@@ -56,6 +56,7 @@ namespace Blog.Controllers
        
         public ActionResult Details(string Slug)
         {
+            //ViewBag.ReturlUrl = "/Blog/"+Slug;
             if (String.IsNullOrWhiteSpace(Slug))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
