@@ -7,6 +7,7 @@
             <div id="main-nav" class="">
                 <div class="container">
                     <div class="nav-header">
+                        <a class="btn btn-blog outline-white pull-left left-buttons" href="/">Home</a>
                         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                         {
 
@@ -33,9 +34,9 @@
                             <a class="btn btn-blog outline-white pull-right"
                                href="@Url.Action("LogOff", "Account")">Logout</a>
                             <div class="username" style="text-align:right;color:white;padding:0px;">
-                                <small>
+                                <a href="@Url.Action("profile", "Account")">
                                     Welcome, @User.Identity.Name! &nbsp
-                                </small>
+                                </a>
                             </div>
 
 

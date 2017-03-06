@@ -440,6 +440,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogPostsController.cs" />
+    <Compile Include="Controllers\CallbackController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -514,6 +515,8 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\Blog20170305015532 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\SarahSchoonmaker-Blog - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\sarahschoonmakerblog - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\sschoonmaker-blog - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\sschoonmakerblog - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -752,9 +755,11 @@
     <Content Include="Views\Account\ResendEmailConfirmation.cshtml" />
     <Content Include="Views\Account\ConfirmationSent.cshtml" />
     <Content Include="Views\Shared\_SocialLogin.cshtml" />
+    <Content Include="Views\Account\profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />
+    <Folder Include="Views\Callback\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.woff" />

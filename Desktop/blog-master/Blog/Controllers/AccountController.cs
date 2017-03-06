@@ -53,6 +53,14 @@ namespace Blog.Controllers
             }
         }
 
+        // GET: /Account/profile 
+        [AllowAnonymous]
+        public ActionResult profile()
+        {
+            //ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -358,7 +366,7 @@ namespace Blog.Controllers
             }
 
             // Sign in the user with this external login provider if the user already has a login
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: true);
             switch (result)
             {
                 case SignInStatus.Success:

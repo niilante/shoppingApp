@@ -68,7 +68,7 @@
 </p>
 
 <div>
-    @if (!Request.IsAuthenticated || (Request.IsAuthenticated && (!User.IsInRole("Admin") && !User.IsInRole("Moderator") && !User.IsInRole("Externaluser"))))
+    @if (!Request.IsAuthenticated || (Request.IsAuthenticated && (!User.IsInRole("Admin") && !User.IsInRole("Moderator") && User.IsInRole("Externaluser")) ))
     {
         @Html.Partial("_SocialLogin")
     }

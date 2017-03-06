@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using Blog.Models;
 using Owin.Security.Providers.LinkedIn;
+using Microsoft.Owin.Security.Facebook;
 
 namespace Blog
 {
@@ -35,7 +36,7 @@ namespace Blog
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -55,17 +56,48 @@ namespace Blog
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: "1685341381766508",
-               appSecret: "6c3285bd726318dce25a688eb0b73342");
+            var facebookOptions = new FacebookAuthenticationOptions()
+            {
+                CallbackPath = new PathString("/signin-facebook"),
+                AppId = "1685341381766508",
+                AppSecret = "6c3285bd726318dce25a688eb0b73342"
+            };
+            facebookOptions.Scope.Add("email");
+            facebookOptions.Scope.Add("public_profile");
+            app.UseFacebookAuthentication(facebookOptions);
 
-            app.UseLinkedInAuthentication("<77m9lwdyflfg09>", "<yyxym3UyZN0y0nvL>");
+            //app.UseFacebookAuthentication(
+            //   CallbackPath = new PathString("/signin-facebook"),
+            //   appId: "1685341381766508",
+            //   appSecret: "6c3285bd726318dce25a688eb0b73342");
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //app.UseLinkedInAuthentication("<77m9lwdyflfg09>", "<yyxym3UyZN0y0nvL>");
+
+            app.UseLinkedInAuthentication
+            (
+                clientId: "77m9lwdyflfg09",
+                clientSecret: "yyxym3UyZN0y0nvL"
+            );
+
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions
+            //{
+            //    //CallbackPath = new PathString("/Account/ExternalLoginCallback"),
+            //    CallbackPath = new PathString("/signin-google"),
+            //    ClientId = "98247090115-u97pb938gt6ml9h3757521ucopsgagvf.apps.googleusercontent.com",
+            //    ClientSecret = "HXHveB2uKJVyEfOQg6vDy-62"
+
+            //});
+
+            var googleOptions = new GoogleOAuth2AuthenticationOptions()
             {
                 ClientId = "98247090115-u97pb938gt6ml9h3757521ucopsgagvf.apps.googleusercontent.com",
-                ClientSecret = "HXHveB2uKJVyEfOQg6vDy-62"
-            });
+                ClientSecret = "HXHveB2uKJVyEfOQg6vDy-62",
+                CallbackPath = new PathString("/signin-google")
+            };
+            googleOptions.Scope.Add("email");
+            app.UseGoogleAuthentication(googleOptions);
+
+
         }
     }
 }
